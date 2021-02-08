@@ -1,1 +1,38 @@
-{"name":"nectbox-landing-page","version":"1.0.0","private":true,"description":"nectbox-landing-page","author":"Kerosz","keywords":["gatsby"],"scripts":{"develop":"gatsby develop","start":"gatsby develop","build":"gatsby build","serve":"gatsby serve","clean":"gatsby clean"},"dependencies":{"@emotion/react":"^11.1.5","@emotion/styled":"^11.1.5","gatsby":"^2.32.3","gatsby-image":"^2.11.0","gatsby-plugin-emotion":"^5.4.0","gatsby-plugin-google-analytics":"^2.11.0","gatsby-plugin-manifest":"^2.12.0","gatsby-plugin-offline":"^3.10.0","gatsby-plugin-react-helmet":"^3.10.0","gatsby-plugin-sharp":"^2.14.1","gatsby-plugin-sitemap":"^2.12.0","gatsby-source-contentful":"^4.6.1","gatsby-source-filesystem":"^2.11.0","gatsby-transformer-sharp":"^2.12.0","react":"^16.13.1","react-dom":"^16.13.1","react-helmet":"^6.1.0"}}
+{
+  "name": "nectbox-landing-page",
+  "version": "0.1.0",
+  "private": true,
+  "description": "nectbox-landing-page",
+  "author": "Nectbox",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "dev": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "@chakra-ui/react": "^1.3.2",
+    "@emotion/react": "^11.1.5",
+    "@emotion/styled": "^11.1.5",
+    "framer-motion": "^3.3.0",
+    "gatsby": "^2.32.3",
+    "gatsby-image": "^2.11.0",
+    "gatsby-plugin-emotion": "^5.4.0",
+    "gatsby-plugin-google-analytics": "^2.11.0",
+    "gatsby-plugin-manifest": "^2.12.0",
+    "gatsby-plugin-offline": "^3.10.0",
+    "gatsby-plugin-react-helmet": "^3.10.0",
+    "gatsby-plugin-sharp": "^2.14.1",
+    "gatsby-plugin-sitemap": "^2.12.0",
+    "gatsby-source-contentful": "^4.6.1",
+    "gatsby-source-filesystem": "^2.11.0",
+    "gatsby-transformer-sharp": "^2.12.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-helmet": "^6.1.0"
+  }
+}

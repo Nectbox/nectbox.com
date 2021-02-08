@@ -1,40 +1,48 @@
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV || 'development'}`,
+});
+
 module.exports = {
   siteMetadata: {
-    title: "nectbox-landing-page",
+    title: 'Nectbox',
+    description:
+      'Nectbox provides product strategy, and software development for startup innovation teams to launch and grow new digital products.',
+    author: `Nectbox`,
+    siteUrl: 'https://nectbox.com',
   },
   plugins: [
     {
-      resolve: "gatsby-source-contentful",
+      resolve: 'gatsby-source-contentful',
       options: {
-        accessToken: "SzWCun81bnCtlRtpQvAu5acX_XZewcsAOjlw88so9RM",
-        spaceId: "d8b72ezdiv9h",
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
       },
     },
-    "gatsby-plugin-emotion",
+    'gatsby-plugin-emotion',
     {
-      resolve: "gatsby-plugin-google-analytics",
+      resolve: 'gatsby-plugin-google-analytics',
       options: {
-        trackingId: "261481178",
+        trackingId: process.env.GOOGLE_ANALITICS_TRACKING_ID,
       },
     },
-    "gatsby-plugin-sharp",
-    "gatsby-plugin-react-helmet",
-    "gatsby-plugin-sitemap",
-    "gatsby-plugin-offline",
+    'gatsby-plugin-sharp',
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-sitemap',
+    'gatsby-plugin-offline',
     {
-      resolve: "gatsby-plugin-manifest",
+      resolve: 'gatsby-plugin-manifest',
       options: {
-        icon: "src/images/icon.png",
+        icon: 'src/images/icon.png',
       },
     },
-    "gatsby-transformer-sharp",
+    'gatsby-transformer-sharp',
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: "images",
-        path: "./src/images/",
+        name: 'images',
+        path: './src/images/',
       },
-      __key: "images",
+      __key: 'images',
     },
   ],
 };
