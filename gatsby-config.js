@@ -25,6 +25,7 @@ module.exports = {
         trackingId: process.env.GOOGLE_ANALITICS_TRACKING_ID,
       },
     },
+    '@chakra-ui/gatsby-plugin',
     'gatsby-plugin-sharp',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sitemap',
@@ -43,6 +44,20 @@ module.exports = {
         path: './src/images/',
       },
       __key: 'images',
+    },
+
+    {
+      resolve: `gatsby-plugin-webfonts`,
+      options: {
+        fonts: {
+          google: [
+            {
+              family: 'Poppins',
+              variants: ['400', '500', '600', '700'],
+            },
+          ],
+        },
+      },
     },
   ],
 };

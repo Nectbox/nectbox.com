@@ -20,11 +20,12 @@ export default css`
   }
 
   body {
-    font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
-      'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Poppins', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+      'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     overscroll-behavior: none;
     overflow-x: hidden;
     overflow-y: auto;
+    background: #edf2f7;
   }
 
   a {
