@@ -6,24 +6,25 @@ interface LinkProps {
   to: string;
   isExternal?: boolean;
   isMenu?: boolean;
+  title?: string;
 }
 
 const Link: React.FC<LinkProps> = (props) => {
   const { to, isExternal, isMenu, children, ...restProps } = props;
 
-  const inheritFont = { fontSize: 'inherit' };
+  const style = { height: 'fit-content', fontSize: 'inherit' };
 
   return isExternal ? (
     <a
       href={to}
       target='_blank'
       rel='noopener noreferrer'
-      style={inheritFont}
+      style={style}
       {...restProps}>
       {children}
     </a>
   ) : (
-    <GatsbyLink to={to} style={inheritFont} {...restProps}>
+    <GatsbyLink to={to} style={style} {...restProps}>
       {children}
       {isMenu && <ChevronDownIcon />}
     </GatsbyLink>

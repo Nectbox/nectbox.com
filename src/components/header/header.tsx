@@ -1,8 +1,12 @@
 import * as React from 'react';
 import Link from '../link';
 import Button from '../button';
+import Image from 'gatsby-image';
+import { graphql, useStaticQuery } from 'gatsby';
 import { Menu, MenuItem } from '../menu';
-import { Image, Box } from '@chakra-ui/react';
+import { width } from '../../styles/theme';
+import { Box } from '@chakra-ui/react';
+import { FixedImageProps, HeaderModule } from '../../types';
 import {
   HeaderSection,
   Wrapper,
@@ -10,88 +14,101 @@ import {
   NavList,
   NavItem,
 } from './header.styles';
-import Branding from '../../images/branding.png';
 
-const Header = () => {
+interface HeaderProps {
+  data: HeaderModule;
+  heroCtaRef: React.MutableRefObject<any>;
+}
+
+interface BrandingProps {
+  branding: FixedImageProps;
+}
+
+const Header: React.FC<HeaderProps> = ({ data, heroCtaRef }) => {
+  const { branding }: BrandingProps = useStaticQuery(graphql`
+    query {
+      branding: file(relativePath: { eq: "branding.png" }) {
+        childImageSharp {
+          fixed(width: 195) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
+    }
+  `);
+
+  const [showButton, setShowButton] = React.useState<boolean>(false);
+
+  React.useEffect(() => {
+    const handleCta = () => {
+      let bottomOffset = heroCtaRef?.current?.getBoundingClientRect().bottom;
+
+      if (heroCtaRef) {
+        if (bottomOffset < 66) {
+          setShowButton(true);
+        } else {
+          setShowButton(false);
+        }
+      } else {
+        setShowButton(true);
+      }
+    };
+
+    window.addEventListener('scroll', handleCta, { passive: true });
+
+    return () => window.removeEventListener('scroll', handleCta);
+  }, [showButton]);
+
   return (
     <HeaderSection as='header'>
-      <Wrapper maxW='1280px'>
+      <Wrapper maxW={width}>
         <Box display='flex' alignItems='center'>
-          <Image htmlWidth='195px' objectFit='contain' src={Branding} />
+          <Link to='/' title={data.title}>
+            <Image
+              fixed={branding.childImageSharp.fixed}
+              alt='Nectbox branding'
+            />
+          </Link>
+
           <Navigation>
             <NavList>
-              <NavItem>
-                <Menu
-                  menuName='Phases'
-                  isLink
-                  to='/phases'
-                  menuList={
-                    <>
-                      <MenuItem
-                        title='Idea'
-                        subTitle='Validate your idea thorugh prototyping and custumer feedback'
-                        isLink
-                        to='/phases#idea'
-                      />
-                      <MenuItem
-                        title='Build'
-                        subTitle='Develop in small cycles, measure customer feedback, and build the right product'
-                        isLink
-                        to='/phases#build'
-                      />
-                      <MenuItem
-                        title='Scale'
-                        subTitle='Improve quality of existing software and grow your product'
-                        isLink
-                        to='/phases#scale'
-                      />
-                      <MenuItem
-                        title='Transform'
-                        subTitle='Digital markets change quickly, adapt and challange the way you always have done it'
-                        isLink
-                        to='/phases#transform'
-                      />
-                    </>
-                  }
-                />
-              </NavItem>
-              <NavItem>
-                <Menu
-                  menuName='What we do'
-                  isLink
-                  to='/'
-                  menuList={
-                    <>
-                      <MenuItem
-                        title='Services'
-                        subTitle='We help startups to build successful products using latest technologies on the market.'
-                        isLink
-                        to='/phases#idea'
-                      />
-                      <MenuItem
-                        title='Our Work'
-                        subTitle='Some of our projects and clients we got to work with.'
-                        isLink
-                        to='/phases#build'
-                      />
-                    </>
-                  }
-                />
-              </NavItem>
-              <NavItem>
-                <Link to='/about'>About</Link>
-              </NavItem>
-              <NavItem>
-                <Link to='/blog'>Blog</Link>
-              </NavItem>
-              <NavItem>
-                <Link to='/contact'>Contact</Link>
-              </NavItem>
+              {data.navigation.menues.map((menu) =>
+                menu.megaMenu ? (
+                  <NavItem key={menu.id}>
+                    <Menu
+                      menuName={menu.title}
+                      isLink={menu.slug ? true : false}
+                      to={`/${menu.slug}`}
+                      menuList={
+                        <>
+                          {menu.megaMenu.menuItems.map((item) => (
+                            <MenuItem
+                              key={item.id}
+                              title={item.heading}
+                              subTitle={item.subHeading}
+                              isLink={item.slug ? true : false}
+                              to={`/${item.slug}`}
+                            />
+                          ))}
+                        </>
+                      }
+                    />
+                  </NavItem>
+                ) : (
+                  <NavItem key={menu.id}>
+                    <Link to={`/${menu.slug}`}>{menu.title}</Link>
+                  </NavItem>
+                )
+              )}
             </NavList>
           </Navigation>
         </Box>
 
-        <Button>Free consultation</Button>
+        {showButton && (
+          <Button>
+            <Link to={`/${data.ctaLink}`}>{data.ctaTitle}</Link>{' '}
+          </Button>
+        )}
       </Wrapper>
     </HeaderSection>
   );

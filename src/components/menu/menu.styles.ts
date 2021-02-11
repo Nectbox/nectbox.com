@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import theme from '../../styles/theme';
 
 export const List = styled.ul`
   display: none;
@@ -9,7 +10,7 @@ export const List = styled.ul`
   border-radius: 0.8rem;
   width: 100%;
   min-width: 450px;
-  background: #e2e8f0;
+  background: ${theme.colors.background.gray};
   padding: 1.6rem 1.8rem;
   box-shadow: 0 8px 20px 0 #4a556826;
 `;
@@ -27,7 +28,7 @@ export const MenuWrapper = styled.div`
 `;
 
 export const MenuItemWrapper = styled.li`
-  background: #edf2f7;
+  background: ${theme.colors.background.light};
   border-radius: 0.8rem;
   margin-bottom: 1.25rem;
   padding: 0.9rem 1.45rem;
@@ -39,11 +40,12 @@ export const MenuItemWrapper = styled.li`
   }
 
   &:hover {
-    background: #1a202c;
-    color: #f7fafc;
+    background: ${theme.colors.background.dark};
+    color: ${theme.colors.text.light};
+    transform: scale(1.02);
 
     p {
-      color: #f7fafc;
+      color: ${theme.colors.text.light};
     }
   }
 

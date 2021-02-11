@@ -55,6 +55,10 @@ module.exports = {
               family: 'Poppins',
               variants: ['400', '500', '600', '700'],
             },
+            {
+              family: 'Mitr',
+              variants: ['600', '700'],
+            },
           ],
         },
       },

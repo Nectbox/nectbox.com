@@ -1,6 +1,10 @@
 import * as React from 'react';
 
-const Footer = () => {
+interface FooterProps {
+  data: any;
+}
+
+const Footer: React.FC<FooterProps> = ({ data }) => {
   return <footer>Footer</footer>;
 };
 

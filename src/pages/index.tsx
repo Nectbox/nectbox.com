@@ -1,10 +1,13 @@
 import * as React from 'react';
 import DefaultLayout from '../layouts/default';
+import Hero from '../sections/hero';
 
 export default function HomePage() {
+  const ctaRef = React.useRef(null);
+
   return (
-    <DefaultLayout>
-      <h1>Hello</h1>
+    <DefaultLayout heroCtaRef={ctaRef}>
+      <Hero ref={ctaRef} />
     </DefaultLayout>
   );
 }
