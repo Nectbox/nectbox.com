@@ -4,8 +4,15 @@ import Image from 'gatsby-image';
 import { useStaticQuery, graphql } from 'gatsby';
 import { Container, Flex } from '@chakra-ui/react';
 import { FluidImageProps } from '../../types';
-import { HeroSection, HeroHeading, Caption, SubHeading } from './hero.styles';
+import {
+  HeroSection,
+  HeroHeading,
+  Content,
+  Caption,
+  SubHeading,
+} from './hero.styles';
 import { width, gradients } from '../../styles/theme';
+import Link from '../../components/link';
 
 interface HeroImageProps {
   heroImage: FluidImageProps;
@@ -16,7 +23,7 @@ const Hero = React.forwardRef<HTMLDivElement, {}>((_, ref) => {
     query {
       heroImage: file(relativePath: { eq: "hero.png" }) {
         childImageSharp {
-          fluid(maxWidth: 750) {
+          fluid(maxWidth: 800) {
             ...GatsbyImageSharpFluid
             ...GatsbyImageSharpFluidLimitPresentationSize
           }
@@ -28,30 +35,34 @@ const Hero = React.forwardRef<HTMLDivElement, {}>((_, ref) => {
   return (
     <HeroSection ref={ref}>
       <Container maxW={width} p='0 1.6rem'>
-        <Flex>
-          <Flex width='54%' flexFlow='column'>
-            <Caption>bringing products to digital</Caption>
+        <Content>
+          <Flex className='content'>
+            <Caption>bringing businesses to digital</Caption>
             <HeroHeading>
               We develop <br />
               <mark>fast sites & apps</mark>
             </HeroHeading>
             <SubHeading>
-              Provideing product strategy, and software development for startup
+              Providing product strategy, and software development for startup
               teams to launch and grow new digital products using cutting edge
-              technologies
+              technologies.
             </SubHeading>
-            <Flex>
-              <Button color={gradients.red}>Free consultation</Button>
-              <Button margin='0 0 0 1.5rem'>What we do</Button>
+            <Flex className='button-wrapper'>
+              <Button color={gradients.purpleish}>
+                <Link to='/free-consultation'>Free consultation</Link>
+              </Button>
+              <Button color={gradients.black}>
+                <Link to='/services'>What we do</Link>
+              </Button>
             </Flex>
           </Flex>
-          <Flex width='46%' className='image-container'>
+          <Flex className='image'>
             <Image
               fluid={heroImage.childImageSharp.fluid}
               alt='Launching a new product'
             />
           </Flex>
-        </Flex>
+        </Content>
       </Container>
     </HeroSection>
   );

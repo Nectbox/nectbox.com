@@ -11,3 +11,16 @@ export interface FluidImageProps {
     fluid: FluidObject;
   };
 }
+
+export interface SiteMetadeta {
+  site: {
+    siteMetadata: {
+      title: string;
+      tagLine: string;
+      description: string;
+      siteUrl: string;
+      author: string;
+      twitter: string;
+    };
+  };
+}

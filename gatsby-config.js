@@ -5,10 +5,12 @@ require('dotenv').config({
 module.exports = {
   siteMetadata: {
     title: 'Nectbox',
+    tagLine: 'Product strategy and development',
     description:
       'Nectbox provides product strategy, and software development for startup innovation teams to launch and grow new digital products.',
     author: `Nectbox`,
     siteUrl: 'https://nectbox.com',
+    twitter: '@nectbox',
   },
   plugins: [
     {

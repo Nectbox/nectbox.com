@@ -9,7 +9,7 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = (props) => {
-  const { children, variant = 'colored', ...restProps } = props;
+  const { children, variant, ...restProps } = props;
 
   if (variant === 'colored') {
     return (
@@ -32,6 +32,10 @@ const Button: React.FC<ButtonProps> = (props) => {
       {children}
     </ButtonWrapper>
   );
+};
+
+Button.defaultProps = {
+  variant: `colored`,
 };
 
 export default Button;

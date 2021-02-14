@@ -1,3 +1,4 @@
+import { colors } from './theme';
 import { css } from '@emotion/react';
 
 export default css`
@@ -25,7 +26,7 @@ export default css`
     overscroll-behavior: none;
     overflow-x: hidden;
     overflow-y: auto;
-    background: #edf2f7;
+    background: ${colors.background.light};
   }
 
   a {

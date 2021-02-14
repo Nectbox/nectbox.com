@@ -7,7 +7,7 @@ export const HeaderSection = styled(Stack)`
   top: 0;
   left: 0;
   width: 100%;
-  height: 7.5rem;
+  height: 8rem;
   background: ${colors.background.light};
   z-index: 1000;
 
@@ -42,7 +42,7 @@ export const Wrapper = styled(Container)`
 export const Navigation = styled.nav`
   display: none;
   align-items: center;
-  margin-left: 3rem;
+  margin-left: 6rem;
 
   @media (min-width: ${breakpoints.lg}) {
     display: flex;
@@ -58,8 +58,10 @@ export const NavItem = styled.li`
 
   p > a,
   > a {
-    padding: 2rem 1.5rem;
+    font-weight: 500;
+    padding: 2.5rem 1.5rem;
     margin: 0 0.3rem;
+    color: ${colors.text.gray};
 
     :hover {
       color: ${colors.accent.purple};

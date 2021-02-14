@@ -4,7 +4,8 @@ const theme = {
   },
   colors: {
     background: {
-      light: '#edf2f7',
+      light: '#f7fafc',
+      lightGray: '#edf2f7',
       dark: '#1a202c',
       gray: '#e2e8f0',
       shadow: '#da3654',
@@ -12,15 +13,20 @@ const theme = {
     text: {
       light: '#f7fafc',
       dark: '#1a202c',
+      gray: '#4A5568',
+      lightGray: '#718096',
     },
     accent: {
       red: '#da3654',
-      purple: '#44337a',
+      darkPurple: '#44337a',
+      purple: '#7F43AD',
     },
   },
   gradients: {
-    purple: 'linear-gradient(180deg, #4C1BCF 0%, #8012D3 70%)',
-    red: 'linear-gradient(180deg, #F83C97 0%, #FB5760 70%)',
+    purple: 'linear-gradient(180deg, #4C1BCF 0%, #7F43AD 85%)',
+    purpleish: 'linear-gradient(180deg, #FF858F 7%, #F83C97 90%)',
+    red: 'linear-gradient(180deg, #FF8D7E 0%, #FB5760 70%)',
+    black: 'linear-gradient(180deg, #2D3748 0%, #1a202c 70%)',
   },
   fonts: {
     default: 'Poppins',
@@ -53,6 +59,9 @@ const theme = {
       slow: `500ms`,
     },
   },
+  shadows: {
+    medium: '0 8px 30px rgba(0,0,0,0.12)',
+  },
   breakpoints: {
     /** 480px */
     xs: '30em',
@@ -76,6 +85,7 @@ export const colors = theme.colors;
 export const gradients = theme.gradients;
 export const fonts = theme.fonts;
 export const transitions = theme.transitions;
+export const shadows = theme.shadows;
 export const breakpoints = theme.breakpoints;
 
 export default theme;

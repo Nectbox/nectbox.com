@@ -6,13 +6,14 @@ export const List = styled.ul`
   position: absolute;
   top: 0;
   left: 0;
-  transform: translateY(4.6rem);
+  transform: translateY(5rem);
   border-radius: 0.8rem;
   width: 100%;
   min-width: 450px;
   background: ${theme.colors.background.gray};
   padding: 1.6rem 1.8rem;
-  box-shadow: 0 8px 20px 0 #4a556826;
+  box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0 8px 20px 0 #4a5568; */
 `;
 
 export const MenuWrapper = styled.div`
@@ -30,8 +31,8 @@ export const MenuWrapper = styled.div`
 export const MenuItemWrapper = styled.li`
   background: ${theme.colors.background.light};
   border-radius: 0.8rem;
-  margin-bottom: 1.25rem;
-  padding: 0.9rem 1.45rem;
+  margin-bottom: 1.4rem;
+  padding: 1rem 1.45rem;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
   transition: 150ms ease-in;
 
@@ -50,15 +51,15 @@ export const MenuItemWrapper = styled.li`
   }
 
   p {
-    font-size: 2.1rem;
-    font-weight: 500;
-    color: #1a202c;
-    margin-bottom: 0.45rem;
+    font-size: 2rem;
+    font-weight: 600;
+    color: ${theme.colors.text.gray};
+    margin-bottom: 0.8rem;
   }
 
   small {
     display: flex;
-    font-size: 1.45rem;
+    font-size: 1.5rem;
     flex-grow: 1;
   }
 `;

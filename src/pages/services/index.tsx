@@ -3,13 +3,13 @@ import SEO from '../../components/seo';
 import DefaultLayout from '../../layouts/default';
 import { PageProps } from 'gatsby';
 
-const BlogPage = ({ location }: PageProps) => {
+const ServicesPage = ({ location }: PageProps) => {
   return (
     <DefaultLayout>
-      <SEO pathname={location.pathname} title='Blog' />
+      <SEO pathname={location.pathname} title='Services' />
       hello
     </DefaultLayout>
   );
 };
 
-export default BlogPage;
+export default ServicesPage;
