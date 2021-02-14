@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import theme from '../../styles/theme';
+import theme from '../../../styles/theme';
 import { css } from '@emotion/react';
 import { Flex, Text } from '@chakra-ui/react';
 import { BackgroundOptions } from './section';

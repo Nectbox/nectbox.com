@@ -1,11 +1,11 @@
 import * as React from 'react';
-import CallToAction from '../../components/call-to-action';
-import Section from '../../components/section';
-import Box from '../../components/box/box';
+import CallToAction from '../../common/call-to-action';
+import Section from '../../common/section';
+import Box from '../../common/box';
 import { useStaticQuery, graphql } from 'gatsby';
 import { Grid } from '@chakra-ui/react';
-import { colors } from '../../styles/theme';
-import { FixedImageProps, ValueOf } from '../../types';
+import { colors } from '../../../styles/theme';
+import { FixedImageProps, ValueOf } from '../../../types';
 
 const data = [
   {

@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet';
 import { graphql, useStaticQuery } from 'gatsby';
-import { SiteMetadeta } from '../../types';
+import { SiteMetadeta } from '../../../types';
 
 export interface SeoProps {
   pathname: string;

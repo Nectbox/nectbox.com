@@ -10,7 +10,7 @@ import {
   Heading,
   SubHeading,
 } from './section.styles';
-import { width, colors } from '../../styles/theme';
+import { width, colors } from '../../../styles/theme';
 
 export interface BackgroundOptions {
   variant?: 'transparent' | 'background';

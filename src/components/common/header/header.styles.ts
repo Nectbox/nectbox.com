@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { colors, breakpoints } from '../../styles/theme';
+import { colors, breakpoints } from '../../../styles/theme';
 import { Stack, Container } from '@chakra-ui/react';
 
 export const HeaderSection = styled(Stack)`

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import theme from '../../styles/theme';
+import theme from '../../../styles/theme';
 import { Flex, Text } from '@chakra-ui/react';
 
 export const BoxWrapper = styled(Flex)`

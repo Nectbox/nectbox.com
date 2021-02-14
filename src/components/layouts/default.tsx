@@ -1,13 +1,13 @@
 import * as React from 'react';
-import Header from '../components/header';
-import Footer from '../components/footer';
+import Header from '../common/header';
+import Footer from '../common/footer';
 import styled from '@emotion/styled';
 import { graphql, useStaticQuery } from 'gatsby';
 import { Global } from '@emotion/react';
 import { CSSReset } from '@chakra-ui/react';
-import { ContentfulLayout } from '../types';
+import { ContentfulLayout } from '../../types';
 
-import globalStyles from '../styles/global';
+import globalStyles from '../../styles/global';
 
 const Main = styled.main`
   margin-top: 8rem;

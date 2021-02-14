@@ -1,7 +1,8 @@
 import * as React from 'react';
-import Section from '../../components/section';
-import Link from '../../components/link';
-import CallToAction from '../../components/call-to-action';
+import Section from '../../common/section';
+import Link from '../../common/link';
+import CallToAction from '../../common/call-to-action';
+import { ArrowRightIcon } from '@chakra-ui/icons';
 import {
   ServiceCard,
   CardWrapper,
@@ -9,8 +10,7 @@ import {
   Description,
   Action,
 } from './services.styles';
-import { ArrowRightIcon } from '@chakra-ui/icons';
-import { colors } from '../../styles/theme';
+import { colors } from '../../../styles/theme';
 
 // MOCK data
 // TBD: Adding the date to contentful

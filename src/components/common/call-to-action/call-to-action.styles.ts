@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { Flex, Text } from '@chakra-ui/react';
-import { colors } from './../../styles/theme';
+import { colors } from '../../../styles/theme';
 
 export const CtaWrapper = styled(Flex)`
   flex-flow: column;

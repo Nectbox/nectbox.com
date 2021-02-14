@@ -4,9 +4,9 @@ import Button from '../button';
 import Image from 'gatsby-image';
 import { graphql, useStaticQuery } from 'gatsby';
 import { Menu, MenuItem } from '../menu';
-import { width } from '../../styles/theme';
+import { width } from '../../../styles/theme';
 import { Box } from '@chakra-ui/react';
-import { FixedImageProps, HeaderModule } from '../../types';
+import { FixedImageProps, HeaderModule } from '../../../types';
 import {
   HeaderSection,
   Wrapper,

@@ -1,9 +1,10 @@
 import * as React from 'react';
-import Button from '../../components/button';
+import Button from '../../common/button';
+import Link from '../../common/link';
 import Image from 'gatsby-image';
 import { useStaticQuery, graphql } from 'gatsby';
 import { Container, Flex } from '@chakra-ui/react';
-import { FluidImageProps } from '../../types';
+import { FluidImageProps } from '../../../types';
 import {
   HeroSection,
   HeroHeading,
@@ -11,8 +12,7 @@ import {
   Caption,
   SubHeading,
 } from './hero.styles';
-import { width, gradients } from '../../styles/theme';
-import Link from '../../components/link';
+import { width, gradients } from '../../../styles/theme';
 
 interface HeroImageProps {
   heroImage: FluidImageProps;
