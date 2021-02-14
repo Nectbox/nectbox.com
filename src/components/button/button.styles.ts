@@ -10,6 +10,9 @@ export const ButtonWrapper = styled(Button)`
   border-radius: 10px;
   width: fit-content;
   ${(props) => props.margin && `margin: ${props.margin}`};
+  transition-property: transform, box-shadow;
+  transition-duration: ${theme.transitions.speed.xl};
+  transition-timing-function: ${theme.transitions.curve.scaleUp};
 
   :hover {
     background: transparent;

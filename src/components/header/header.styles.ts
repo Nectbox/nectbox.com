@@ -24,7 +24,7 @@ export const HeaderSection = styled(Stack)`
     display: none;
   }
 
-  @media (min-width: ${breakpoints.md}) {
+  @media (min-width: ${breakpoints.sm}) {
     button {
       display: flex;
     }

@@ -5,6 +5,7 @@ import { colors } from './../../styles/theme';
 export const CtaWrapper = styled(Flex)`
   flex-flow: column;
   align-items: center;
+  text-align: center;
 `;
 
 export const Content = styled(Text)`

@@ -76,6 +76,10 @@ export const Caption = styled(Text)`
   margin-bottom: 3.5rem;
 
   @media (min-width: ${theme.breakpoints.xs}) {
+    font-size: 1.5rem;
+  }
+
+  @media (min-width: ${theme.breakpoints['2xl']}) {
     font-size: 1.6rem;
   }
 `;

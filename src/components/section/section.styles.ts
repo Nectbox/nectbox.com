@@ -81,10 +81,11 @@ export const SubHeading = styled(Text)`
 
 export const BottomContent = styled(Flex)`
   justify-content: center;
-  margin-top: 5rem;
+  margin-top: 6.5rem;
 `;
 
 export const SectionContentWrapper = styled(Flex)`
   max-width: ${(props) => (props.wide ? '100%' : '118rem')};
   margin: 0 auto;
+  justify-content: center;
 `;

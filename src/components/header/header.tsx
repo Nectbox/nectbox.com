@@ -44,7 +44,7 @@ const Header: React.FC<HeaderProps> = ({ data, heroCtaRef }) => {
       let bottomOffset = heroCtaRef?.current?.getBoundingClientRect().bottom;
 
       if (heroCtaRef) {
-        if (bottomOffset < 66) {
+        if (bottomOffset < 65) {
           setShowButton(true);
         } else {
           setShowButton(false);
