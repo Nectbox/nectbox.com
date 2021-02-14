@@ -1,8 +1,6 @@
 import * as React from 'react';
-import CallToAction from '../../common/call-to-action';
-import Section from '../../common/section';
-import Box from '../../common/box';
 import { useStaticQuery, graphql } from 'gatsby';
+import { Section, CallToAction, Box } from '../../common';
 import { Grid } from '@chakra-ui/react';
 import { colors } from '../../../styles/theme';
 import { FixedImageProps, ValueOf } from '../../../types';
@@ -20,7 +18,7 @@ const data = [
     icon: 'develop',
     title: 'Develop',
     text:
-      'Continuous feedback allows a business to iterate quickly and maximize their resources. Throughout the develop phase our team guides each business through a measurable agile process open for feedback every two weeks.',
+      'Continuous feedback allows a business to iterate quickly and maximize their resources. Throughout the develop phase our team guides each business through a measurable agile process open for receiving feedback every two weeks.',
   },
   {
     id: '3',

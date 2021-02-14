@@ -1,7 +1,5 @@
 import * as React from 'react';
-import Section from '../../common/section';
-import Link from '../../common/link';
-import CallToAction from '../../common/call-to-action';
+import { Section, CallToAction, Link } from '../../common';
 import { ArrowRightIcon } from '@chakra-ui/icons';
 import {
   ServiceCard,

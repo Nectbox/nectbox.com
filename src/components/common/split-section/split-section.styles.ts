@@ -1,16 +1,17 @@
-import { width } from './../../styles/theme';
 import styled from '@emotion/styled';
-import theme from '../../styles/theme';
-import { Flex, Stack, Text } from '@chakra-ui/react';
+import theme from '../../../styles/theme';
+import { css } from '@emotion/react';
+import { Flex, Text, Heading as CHeading } from '@chakra-ui/react';
 
-export const HeroSection = styled(Stack)`
+export const SplitSectionWrapper = styled.section`
   padding: 7.5rem 0;
 `;
 
 export const Content = styled(Flex)`
-  flex-flow: column;
+  flex-flow: ${(props) =>
+    props.contentPosition ? 'column-reverse' : 'column'};
 
-  & > .content {
+  & > .left-pane {
     flex-flow: column;
     margin-bottom: 5rem;
 
@@ -29,9 +30,16 @@ export const Content = styled(Flex)`
 
     @media (min-width: ${theme.breakpoints.lg}) {
       margin-bottom: 0;
-      padding-right: 1rem;
-      /* width: 48%; */
       flex: 48%;
+
+      ${(props) =>
+        props.contentPosition
+          ? css`
+              padding-left: 1rem;
+            `
+          : css`
+              padding-right: 1rem;
+            `};
     }
 
     @media (min-width: ${theme.breakpoints.xs}) {
@@ -45,11 +53,18 @@ export const Content = styled(Flex)`
     }
   }
 
-  & > .image {
+  & > .right-pane {
     @media (min-width: ${theme.breakpoints.lg}) {
-      padding-left: 1rem;
-      /* width: 52%; */
       flex: 52%;
+
+      ${(props) =>
+        props.contentPosition
+          ? css`
+              padding-right: 1rem;
+            `
+          : css`
+              padding-left: 1rem;
+            `};
     }
 
     & > * {
@@ -58,7 +73,7 @@ export const Content = styled(Flex)`
   }
 
   @media (min-width: ${theme.breakpoints.lg}) {
-    flex-flow: row;
+    flex-flow: ${(props) => (props.contentPosition ? 'row-reverse' : 'row')};
   }
 `;
 
@@ -84,16 +99,16 @@ export const Caption = styled(Text)`
   }
 `;
 
-export const HeroHeading = styled.h1`
+export const Heading = styled(Text)<{ scheme: string }>`
   font-size: 7.2rem;
-  line-height: 6.8rem;
+  line-height: ${(props) => (props.lineHeight ? props.lineHeight : '6.8rem')};
   font-family: ${theme.fonts.heading};
   font-weight: 600;
   margin-bottom: 4rem;
 
   mark {
     font-size: inherit;
-    background: ${theme.gradients.purple};
+    background: ${(props) => props.scheme};
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }

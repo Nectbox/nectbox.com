@@ -1,6 +1,5 @@
 import * as React from 'react';
-import SEO from '../../components/seo';
-import DefaultLayout from '../../layouts/default';
+import { DefaultLayout, SEO } from '../../components';
 import { PageProps } from 'gatsby';
 
 const ServicesPage = ({ location }: PageProps) => {

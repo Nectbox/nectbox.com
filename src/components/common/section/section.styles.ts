@@ -4,8 +4,14 @@ import { css } from '@emotion/react';
 import { Flex, Text } from '@chakra-ui/react';
 import { BackgroundOptions } from './section';
 
-export const SectionWrapper = styled.section`
+export const SectionWrapper = styled.section<BackgroundOptions>`
   padding: 7.5rem 0;
+
+  ${(props) =>
+    props.variant === 'background' &&
+    css`
+      padding: 3.75rem 0;
+    `}
 `;
 
 export const Background = styled.div<BackgroundOptions>`

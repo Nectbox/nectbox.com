@@ -1,5 +1,12 @@
 import * as React from 'react';
-import { Phases, Services, Hero, SEO, DefaultLayout } from '../components';
+import {
+  Phases,
+  Services,
+  Hero,
+  SEO,
+  DefaultLayout,
+  Technologies,
+} from '../components';
 import { PageProps } from 'gatsby';
 
 export default function HomePage({ location }: PageProps) {
@@ -10,6 +17,7 @@ export default function HomePage({ location }: PageProps) {
       <SEO pathname={location.pathname} title='Home' />
       <Hero ref={ctaRef} />
       <Services />
+      <Technologies />
       <Phases />
     </DefaultLayout>
   );
