@@ -14,7 +14,7 @@ const Box = (props: BoxProps) => {
   const { src, title, content, number, withNumber, ...restProps } = props;
 
   return (
-    <BoxWrapper content={number} showContent={withNumber} {...restProps}>
+    <BoxWrapper content={number} show={withNumber ? 1 : 0} {...restProps}>
       <Image fixed={src} alt={title} />
       <Heading as='h3'>{title}</Heading>
       <Content>{content}</Content>

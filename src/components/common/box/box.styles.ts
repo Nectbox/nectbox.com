@@ -9,7 +9,7 @@ export const BoxWrapper = styled(Flex)`
   color: ${theme.colors.background.lightGray};
 
   &::before {
-    display: ${(props) => (props.showContent ? 'block' : 'none')};
+    display: ${(props) => (props.show ? 'block' : 'none')};
     content: '${(props) => props.content}';
     position: absolute;
     top: 0;

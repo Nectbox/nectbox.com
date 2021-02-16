@@ -20,7 +20,7 @@ export interface SectionContentProps {
 export const SectionContent: React.FC<SectionContentProps> = (props) => {
   const { wide, ...restProps } = props;
 
-  return <SectionContentWrapper wide={wide} {...restProps} />;
+  return <SectionContentWrapper wide={wide ? 1 : 0} {...restProps} />;
 };
 
 SectionContent.defaultProps = {

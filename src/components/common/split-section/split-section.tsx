@@ -46,7 +46,7 @@ const SplitSection = React.forwardRef<HTMLElement, SplitSectionProps>(
     return (
       <SplitSectionWrapper ref={ref} {...restProps}>
         <Container maxW={width} p='0 1.6rem'>
-          <Content contentPosition={invert}>
+          <Content contentposition={invert ? 1 : 0}>
             <Flex className='left-pane'>
               {caption && <Caption>{caption}</Caption>}
               {title && (

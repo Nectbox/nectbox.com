@@ -9,7 +9,7 @@ export const SplitSectionWrapper = styled.section`
 
 export const Content = styled(Flex)`
   flex-flow: ${(props) =>
-    props.contentPosition ? 'column-reverse' : 'column'};
+    props.contentposition ? 'column-reverse' : 'column'};
 
   & > .left-pane {
     flex-flow: column;
@@ -33,7 +33,7 @@ export const Content = styled(Flex)`
       flex: 48%;
 
       ${(props) =>
-        props.contentPosition
+        props.contentposition
           ? css`
               padding-left: 1rem;
             `
@@ -58,7 +58,7 @@ export const Content = styled(Flex)`
       flex: 52%;
 
       ${(props) =>
-        props.contentPosition
+        props.contentposition
           ? css`
               padding-right: 1rem;
             `
@@ -73,7 +73,7 @@ export const Content = styled(Flex)`
   }
 
   @media (min-width: ${theme.breakpoints.lg}) {
-    flex-flow: ${(props) => (props.contentPosition ? 'row-reverse' : 'row')};
+    flex-flow: ${(props) => (props.contentposition ? 'row-reverse' : 'row')};
   }
 `;
 

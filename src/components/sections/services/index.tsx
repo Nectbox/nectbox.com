@@ -8,60 +8,43 @@ import {
   Description,
   Action,
 } from './services.styles';
-import { colors } from '../../../styles/theme';
+import { SectionModel, ServicesContentType } from '../../../types';
 
-// MOCK data
-// TBD: Adding the date to contentful
-const data = [
-  {
-    id: '1',
-    title: 'JAMstack websites',
-    text:
-      'Get your website an unfair advantage in SERP rankings. We build JAMstack websites with battle-tested SSG technologies and most popular headless CMS.',
-    ctaLink: 'services/jamstack-website',
-    ctaName: 'JAMstack',
-  },
-  {
-    id: '2',
-    title: 'Progressive Web Applications',
-    text: `PWAs are offering the
-    best of Native Applications and Web technology at your users 
-    fingertips. Build a fast and scalable web application.`,
-    ctaLink: 'services/progressive-web-app',
-    ctaName: 'PWAs',
-  },
-  {
-    id: '3',
-    title: 'eCommerce',
-    text:
-      'The first step in reaching new customers or gaining visibility for your brand starts with your personalized and performant store for your audience.',
-    ctaLink: 'services/ecommerce',
-    ctaName: 'eCommerce',
-  },
-];
+export interface ServicesProps {
+  data: SectionModel<ServicesContentType>;
+}
 
-const Services = () => {
+const Services: React.FC<ServicesProps> = (props) => {
+  const {
+    title,
+    caption,
+    subTitle,
+    colorScheme,
+    ctaModal,
+    sectionContent,
+  } = props.data;
+
   return (
     <Section
-      colorScheme={colors.accent.red}
-      caption='Launch your product'
-      title='What can Nectbox do for you?'
-      subTitle="We create prototypes to validate the problem and the solution to the market you're trying to serve, build scalable software to create value for your users, and create additional growth opportunities through continuous iteration."
+      colorScheme={colorScheme}
+      caption={caption}
+      title={title}
+      subTitle={subTitle}
       bottom={
         <CallToAction
-          content='Want to find out more about how we can help you?'
-          ctaName='Services'
-          ctaLink='services'
-          colorScheme={colors.accent.red}
+          content={ctaModal.content}
+          ctaName={ctaModal.ctaName}
+          ctaLink={ctaModal.ctaLink}
+          colorScheme={colorScheme}
         />
       }>
       <CardWrapper>
-        {data.map((entry) => (
+        {sectionContent.contentType.map((entry) => (
           <ServiceCard key={entry.id}>
             <Link to={`/${entry.ctaLink}`}>
               <Heading as='h3'>{entry.title}</Heading>
               <Description>{entry.text}</Description>
-              <Action color={colors.accent.red} as='button'>
+              <Action color={colorScheme} as='button'>
                 Read more about {entry.ctaName}
                 <ArrowRightIcon />
               </Action>

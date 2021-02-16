@@ -1,39 +1,14 @@
 import * as React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
+import { renderRichText } from 'gatsby-source-contentful/rich-text';
 import { Section, CallToAction, Box } from '../../common';
 import { Grid } from '@chakra-ui/react';
-import { colors } from '../../../styles/theme';
-import { FixedImageProps, ValueOf } from '../../../types';
-
-const data = [
-  {
-    id: '1',
-    icon: 'idea',
-    title: 'Idea',
-    text:
-      'You have an idea for a digital product - but you don’t know if it’s worth investing your time and resources. Does it solve a real problem? Is anyone willing to buy it? We’ll answer these questions and more while gaining an in-depth understanding of your users and your market.',
-  },
-  {
-    id: '2',
-    icon: 'develop',
-    title: 'Develop',
-    text:
-      'Continuous feedback allows a business to iterate quickly and maximize their resources. Throughout the develop phase our team guides each business through a measurable agile process open for receiving feedback every two weeks.',
-  },
-  {
-    id: '3',
-    icon: 'grow',
-    title: 'Grow',
-    text:
-      'Once launched, we define success metrics and a roadmap to grow your product. We align building a sustainable business with the needs of your customers to create value for everyone involved.',
-  },
-  {
-    id: '4',
-    icon: 'transform',
-    title: 'Transform',
-    text: `Become a pioneer and leverage a digital-first mindset. Map, understand, and reimagine the experiences of everyone who engages with your business; your customers, employees, vendors, and partners.`,
-  },
-];
+import {
+  FixedImageProps,
+  ValueOf,
+  SectionModel,
+  PhasesContentType,
+} from '../../../types';
 
 interface ImageDataProps {
   idea: FixedImageProps;
@@ -42,8 +17,21 @@ interface ImageDataProps {
   transform: FixedImageProps;
 }
 
-const Phases = () => {
-  const imgData: ImageDataProps = useStaticQuery(graphql`
+interface PhasesProps {
+  data: SectionModel<PhasesContentType>;
+}
+
+const Phases: React.FC<PhasesProps> = (props) => {
+  const {
+    caption,
+    colorScheme,
+    title,
+    subTitle,
+    ctaModal,
+    sectionContent,
+  } = props.data;
+
+  const images: ImageDataProps = useStaticQuery(graphql`
     query {
       idea: file(relativePath: { eq: "idea.png" }) {
         childImageSharp {
@@ -78,16 +66,16 @@ const Phases = () => {
 
   return (
     <Section
-      colorScheme={colors.accent.purple}
-      caption='launch with confidence'
-      title='Phases designed with a startup mindset'
-      subTitle='We use a proven process to guide your product from early idea stages all the way thorugh design, development and marketing in order to achieve exponential growth.'
+      colorScheme={colorScheme}
+      caption={caption}
+      title={title}
+      subTitle={subTitle}
       bottom={
         <CallToAction
-          content='Wonder how each phase is designed to help you?'
-          ctaName='See Phases'
-          ctaLink='phases'
-          colorScheme={colors.accent.purple}
+          content={ctaModal.content}
+          ctaName={ctaModal.ctaName}
+          ctaLink={ctaModal.ctaLink}
+          colorScheme={ctaModal.colorScheme}
         />
       }>
       <Grid
@@ -96,19 +84,23 @@ const Phases = () => {
         columnGap='calc(6vw + 3.45rem)'
         rowGap='4rem'
         mb='2rem'>
-        {data.map((entry, idx) => (
-          <Box
-            key={entry.id}
-            title={entry.title}
-            content={entry.text}
-            src={
-              (imgData[entry.icon] as ValueOf<ImageDataProps>).childImageSharp
-                .fixed
-            }
-            withNumber
-            number={idx + 1}
-          />
-        ))}
+        {sectionContent.contentType.map((entry, idx) => {
+          const [processedText] = renderRichText(entry.text)[0].props.children;
+
+          return (
+            <Box
+              key={entry.id}
+              title={entry.title}
+              content={processedText}
+              src={
+                (images[entry.icon] as ValueOf<ImageDataProps>).childImageSharp
+                  .fixed
+              }
+              withNumber
+              number={idx + 1}
+            />
+          );
+        })}
       </Grid>
     </Section>
   );
