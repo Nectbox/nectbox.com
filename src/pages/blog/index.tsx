@@ -5,12 +5,16 @@ import { DefaultLayout, SEO } from '../../components';
 import Posts from '../../components/blog';
 
 interface Post{
-  slug: string;
-  title: string;
+  node : {
+
+    title: string;
+    slug: string;
+  }
 }
 
+// const BlogPage = ({ location, data }: PageProps<Post>) => {
+//   // console.log(data.node.title);
 const BlogPage = ({ location }: PageProps) => {
-
   const data = useStaticQuery(graphql`
   query{
       allContentfulBlogPost(

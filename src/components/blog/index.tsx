@@ -3,12 +3,15 @@ import * as React from 'react';
 
 
 interface Post{
+  node: {
     slug: string;
     title: string;
+  }
+  
 }
-type PostProps ={
-  posts: [Post]
-}
+// type PostProps ={
+//   posts: [Post]
+// }
 
 interface Props {
   data: Post
