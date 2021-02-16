@@ -49,6 +49,20 @@ module.exports = {
     },
 
     {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          {
+            resolve: `gatsby-remark-images-contentful`,
+            options: {
+              maxWidth: 750,
+            }
+          }
+        ]
+      }
+    },
+
+    {
       resolve: `gatsby-plugin-webfonts`,
       options: {
         fonts: {
