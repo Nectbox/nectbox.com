@@ -1,4 +1,4 @@
-import { Container, Divider, Img } from '@chakra-ui/react';
+
 import * as React from 'react';
 import { PageProps, graphql, useStaticQuery, Link } from 'gatsby';
 import { DefaultLayout } from '../components';
@@ -11,7 +11,7 @@ import {
   RenderRichTextData,
 } from "gatsby-source-contentful/rich-text"
 import { FluidObject } from 'gatsby-image';
-import BlogBody from '../components/blogBody';
+import BlogBody from '../components/blog-body';
 
 
 type TemplateProps = {

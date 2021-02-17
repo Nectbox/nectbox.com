@@ -6,9 +6,9 @@ import {
 } from "gatsby-source-contentful/rich-text"
 import { BLOCKS, MARKS } from "@contentful/rich-text-types"
 import { Options } from "@contentful/rich-text-react-renderer"
-import { Bold, Code, Heading1, Text } from "../../templates/Markdown"
+import { Bold, Code, Heading1, Text } from "../../templates/markdown"
 import Img from "gatsby-image"
-import { useContentfulImage } from '../../templates/hooks/useContenfulImage'
+import { useContentfulImage } from '../../hooks/use-contenful-image'
 
 type BlogBodyProps = {
   content: RenderRichTextData<ContentfulRichTextGatsbyReference>

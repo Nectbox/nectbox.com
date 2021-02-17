@@ -2,13 +2,18 @@ import React from 'react';
 import { useStaticQuery, graphql, PageProps } from 'gatsby';
 
 import { DefaultLayout, SEO } from '../../components';
-import Posts from '../../components/blog';
+import BlogCard from '../../components/blog-card';
+import { FluidObject } from 'gatsby-image';
 
-interface Post{
-  node : {
-
-    title: string;
+interface Post {
+  node: {
     slug: string;
+    title: string;
+    id: string,
+    description: string
+    blogImage: {
+      fluid: FluidObject
+    }
   }
 }
 
@@ -25,21 +30,30 @@ const BlogPage = ({ location }: PageProps) => {
       ){
           edges{
               node{
+                  id
+                  description
                   title
                   slug
+                  blogImage{
+                    fluid{
+                      src
+                    }
+                  }
+                  
               }
           }
       }
   }
 `)
-console.log({datafromPage: data});
+  console.log({ datafromPage: data });
   return (
     <DefaultLayout>
       <SEO pathname={location.pathname} title='Posts' />
-      {data.allContentfulBlogPost.edges.map((edge:Post) => {
-        return  <Posts data={edge} /> 
-      })}
-     
+      <div style={{ display: "flex", justifyContent: "space-evenly" }}>
+        {data.allContentfulBlogPost.edges.map((edge: Post) => {
+          return <BlogCard data={edge} />
+        })}
+      </div>
     </DefaultLayout>
   );
 };
