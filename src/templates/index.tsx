@@ -6,67 +6,34 @@ import { renderRichText } from 'gatsby-source-contentful/rich-text';
 import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types';
 
 import Highlight, { defaultProps } from "prism-react-renderer";
+import {
+  ContentfulRichTextGatsbyReference,
+  RenderRichTextData,
+} from "gatsby-source-contentful/rich-text"
+import { FluidObject } from 'gatsby-image';
+import BlogBody from '../components/blogBody';
 
 
-
-
-export const query = graphql`
-  query($slug: String!) {
-    contentfulBlogPost(slug: { eq: $slug }) {
-      slug
-      title
-      description
-      id
-      createdAt
-      post {
-        raw
-      }
+type TemplateProps = {
+  data: {
+    blog: {
+      id: string
+      title: string
+      slug: string
+      date: string
+      post: RenderRichTextData<ContentfulRichTextGatsbyReference>
+      blogImage: {
+        fluid: FluidObject
+      }[]
     }
-  }
-`;
-const Bold = ({ children }) => <span className="bold">{children}</span>
-const Text = ({ children }) => <h1 style={{ color: "red" }}>{children}</h1>
-
-
-const options = {
-  renderMark: {
-    [MARKS.BOLD]: text => <Text>{text}</Text>,
-  },
-  renderNode: {
-    [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
-    // [BLOCKS.PARAGRAPH]: node => {
-    //   return (
-    //     <>
-    //       <Highlight {...defaultProps} code={node} language="jsx">
-    //         {({ className, style, tokens, getLineProps, getTokenProps }) => (
-    //           <pre className={className} style={style}>
-    //             {tokens.map((line, i) => (
-    //               <div {...getLineProps({ line, key: i })}>
-    //                 {line.map((token, key) => (
-    //                   <span {...getTokenProps({ token, key })} />
-    //                 ))}
-    //               </div>
-    //             ))}
-    //           </pre>
-    //         )}
-    //       </Highlight>
-    //     </>
-    //   )
-    // }
   }
 }
 
-const BlogTemplate = ({ data }) => {
-  const { title, description, createdAt, post } = data.contentfulBlogPost;
-  // const {raw} = post
-
-
+const BlogTemplate = ({ data: {blog} } : TemplateProps) => {
+  console.log(blog);
   return (
     <DefaultLayout>
-      <h1>{title}</h1>
-      <p>{description}</p>
-
-      {renderRichText(post, options)}
+      <BlogBody content={blog.post}/>
     </DefaultLayout>
   )
 };
@@ -74,3 +41,23 @@ const BlogTemplate = ({ data }) => {
 export default BlogTemplate;
 
 
+
+export const query = graphql`
+  query($slug: String!) {
+    blog: contentfulBlogPost(slug: { eq: $slug }) {
+      slug
+      title
+      description
+      id
+      createdAt(formatString: "MMM D YYYY")
+      blogImage {
+        fluid(quality: 100) {
+          ...GatsbyContentfulFluid
+        }
+      }
+      post {
+        raw
+      }
+    }
+  }
+`;
