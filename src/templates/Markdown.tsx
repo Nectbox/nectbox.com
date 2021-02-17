@@ -12,3 +12,11 @@ export const Text = ({ children }: NodeProps) => (
 
 export const Heading1 = ({ children }: NodeProps) => (
   <h1 style={{ fontSize: "35px" }}>{children}</h1>)
+
+export const Code = ({ children }: NodeProps) => {
+  console.log({ children });
+  return (
+    <code style={{ color: "red", fontSize: "40px" }}>{children}</code>
+
+  )
+}
