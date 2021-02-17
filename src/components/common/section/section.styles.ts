@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import theme from '../../../styles/theme';
 import { css } from '@emotion/react';
 import { Flex, Text } from '@chakra-ui/react';
-import { BackgroundOptions } from './section';
+import { BackgroundOptions, ColorOptions } from './section';
 
 export const SectionWrapper = styled.section<BackgroundOptions>`
   padding: 7.5rem 0;
@@ -26,12 +26,13 @@ export const Background = styled.div<BackgroundOptions>`
     `}
 `;
 
-export const TopContent = styled.header`
+export const TopContent = styled.header<ColorOptions>`
   width: 100%;
   display: flex;
   flex-flow: column;
   text-align: center;
   margin: 0 auto 10rem;
+  color: ${(props) => props.txtColor};
 
   @media (min-width: ${theme.breakpoints.sm}) {
     width: 90%;
@@ -66,6 +67,14 @@ export const Heading = styled(Text)`
   line-height: 6.65rem;
   margin-bottom: 6rem;
 
+  ${(props) =>
+    props.gradiant &&
+    css`
+      background: ${props.color};
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    `};
+
   @media (min-width: ${theme.breakpoints.md}) {
     font-size: 5.7rem;
   }
@@ -79,10 +88,18 @@ export const SubHeading = styled(Text)`
   width: 85%;
   align-self: center;
   font-size: 2rem;
+  color: inherit;
 
   @media (min-width: ${theme.breakpoints.xs}) {
     font-size: 2.45rem;
   }
+`;
+
+export const CustomTop = styled(Flex)`
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4.5rem;
 `;
 
 export const BottomContent = styled(Flex)`

@@ -3,20 +3,31 @@ import {
   RenderRichTextData,
 } from 'gatsby-source-contentful/rich-text';
 
-export interface ContentfulLayout {
-  defaultLayout: {
-    nodes: [
-      {
-        contentModules: HeaderModule[];
-      }
-    ];
-  };
+export interface ContentfulData<T> {
+  edges: [
+    {
+      node: T;
+    }
+  ];
+}
+export interface LayoutData {
+  headerContent: ContentfulData<HeaderModule>;
+  footerContent: ContentfulData<FooterModule>;
 }
 
 export interface HeaderModule {
+  id: string;
   title: string;
   ctaLink: string;
   ctaTitle: string;
+  navigation: {
+    menues: NavigationMenu[];
+  };
+}
+
+export interface FooterModule extends SectionModel {
+  id: string;
+  title: string;
   navigation: {
     menues: NavigationMenu[];
   };
@@ -39,30 +50,38 @@ export interface MenuItem {
 }
 
 export interface HomepageData {
-  services: ContentfulHomeData<SectionModel<ServicesContentType>>;
-  technologies: ContentfulHomeData<SectionModel<TechContentType>>;
-  phases: ContentfulHomeData<SectionModel<PhasesContentType>>;
+  hero: ContentfulData<SplitSectionModel>;
+  services: ContentfulData<SectionModel<ServicesContentType>>;
+  technologies: ContentfulData<SectionModel<TechContentType>>;
+  phases: ContentfulData<SectionModel<PhasesContentType>>;
 }
 
-export interface ContentfulHomeData<T> {
-  edges: [
-    {
-      node: {
-        sectionModel: T;
-      };
-    }
-  ];
+export interface SplitSectionModel {
+  sectionModel: {
+    id: string;
+    caption: string;
+    subTitle: string;
+    ctaLink: string;
+    invertSection: boolean;
+  };
 }
 
-export interface SectionModel<T> {
-  id: string;
-  caption: string;
-  title: string;
-  subTitle: string;
-  colorScheme: string;
-  variant: 'transparent' | 'background';
-  ctaModal: CtaModal;
-  sectionContent: SectionContent<T>;
+export interface SectionModel<T extends {} = {}> {
+  sectionModel: {
+    id: string;
+    component: React.ElementType<any>;
+    variant: 'transparent' | 'background';
+    colorScheme: string;
+    backgroundColor: string;
+    textColor: string;
+    titleColor: string;
+    isGradiant: boolean;
+    caption: string;
+    title: string;
+    subTitle: string;
+    ctaModal: CtaModal;
+    sectionContent: SectionContent<T>;
+  };
 }
 
 export interface CtaModal {

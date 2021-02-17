@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { renderRichText } from 'gatsby-source-contentful/rich-text';
+import { BLOCKS } from '@contentful/rich-text-types';
 import { Section, CallToAction, Box } from '../../common';
 import { Grid } from '@chakra-ui/react';
 import {
@@ -29,7 +30,7 @@ const Phases: React.FC<PhasesProps> = (props) => {
     subTitle,
     ctaModal,
     sectionContent,
-  } = props.data;
+  } = props.data.sectionModel;
 
   const images: ImageDataProps = useStaticQuery(graphql`
     query {
@@ -85,13 +86,17 @@ const Phases: React.FC<PhasesProps> = (props) => {
         rowGap='4rem'
         mb='2rem'>
         {sectionContent.contentType.map((entry, idx) => {
-          const [processedText] = renderRichText(entry.text)[0].props.children;
+          const entryText = renderRichText(entry.text, {
+            renderNode: {
+              [BLOCKS.PARAGRAPH]: (node, children) => children[0],
+            },
+          })[0];
 
           return (
             <Box
               key={entry.id}
               title={entry.title}
-              content={processedText}
+              content={entryText}
               src={
                 (images[entry.icon] as ValueOf<ImageDataProps>).childImageSharp
                   .fixed

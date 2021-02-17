@@ -22,7 +22,7 @@ const Services: React.FC<ServicesProps> = (props) => {
     colorScheme,
     ctaModal,
     sectionContent,
-  } = props.data;
+  } = props.data.sectionModel;
 
   return (
     <Section

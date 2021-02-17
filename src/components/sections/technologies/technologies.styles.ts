@@ -1,9 +1,8 @@
 import styled from '@emotion/styled';
 import { Flex, Text } from '@chakra-ui/react';
-import { colors, fonts } from './../../../styles/theme';
+import { colors, breakpoints } from './../../../styles/theme';
 
 export const ContentWrapper = styled(Flex)`
-  width: 100%;
   flex-flow: column;
   margin: 0 1.5rem;
 `;
@@ -14,16 +13,20 @@ export const TechList = styled(Flex)`
   justify-content: center;
   border: 1px dashed ${colors.accent.purple};
   border-radius: 1.6rem;
-  padding: 2.5rem;
-  margin-bottom: 2.25rem;
+  padding: 1.75rem;
+  margin-bottom: 4rem;
 
   &:last-of-type {
     margin-bottom: 0;
   }
+
+  @media (min-width: ${breakpoints.xl}) {
+    padding: 2.75rem;
+  }
 `;
 
 export const Heading = styled(Text)`
-  font-size: 1.75rem;
+  font-size: 1.6rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.2rem;
@@ -32,17 +35,31 @@ export const Heading = styled(Text)`
   background: ${(props) => props.scheme};
   background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  @media (min-width: ${breakpoints.xl}) {
+    font-size: 1.75rem;
+  }
 `;
 
 export const TechWrapper = styled(Flex)`
-  width: 90%;
+  width: 100%;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
 
   img {
-    width: 14rem;
-    height: 4.5rem;
-    margin: 0 1.5rem;
+    width: 17.5rem;
+    height: 6.25rem;
+    margin: 1rem;
+
+    @media (min-width: ${breakpoints.xl}) {
+      width: 17rem;
+      height: 6rem;
+      margin: 1rem 2rem;
+    }
+  }
+
+  @media (min-width: ${breakpoints.xl}) {
+    width: 95%;
   }
 `;

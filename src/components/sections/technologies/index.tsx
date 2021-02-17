@@ -15,7 +15,13 @@ export interface TechnologiesProps {
 }
 
 const Technologies: React.FC<TechnologiesProps> = (props) => {
-  const { variant, caption, title, subTitle, sectionContent } = props.data;
+  const {
+    variant,
+    caption,
+    title,
+    subTitle,
+    sectionContent,
+  } = props.data.sectionModel;
 
   return (
     <Section
@@ -23,7 +29,7 @@ const Technologies: React.FC<TechnologiesProps> = (props) => {
       caption={caption}
       title={title}
       subTitle={subTitle}>
-      <ContentWrapper>
+      <ContentWrapper width={{ base: '100%', sm: '90%', lg: '80%' }}>
         {sectionContent.contentType.map((entry) => (
           <TechList key={entry.id}>
             <Heading as='h3' scheme={gradients.black}>
@@ -32,6 +38,7 @@ const Technologies: React.FC<TechnologiesProps> = (props) => {
             <TechWrapper>
               {entry.techIcon.map((icon) => (
                 <img
+                  key={icon.id}
                   src={icon.image.file.url}
                   alt={icon.alternateText}
                   loading='lazy'

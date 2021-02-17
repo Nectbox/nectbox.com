@@ -13,14 +13,15 @@ import { HomepageData } from '../types';
 export default function HomePage({ location, data }: PageProps<HomepageData>) {
   const ctaRef = React.useRef(null);
 
-  const servicesData = data.services.edges[0].node.sectionModel;
-  const techData = data.technologies.edges[0].node.sectionModel;
-  const phasesData = data.phases.edges[0].node.sectionModel;
+  const heroData = data.hero.edges[0].node;
+  const servicesData = data.services.edges[0].node;
+  const techData = data.technologies.edges[0].node;
+  const phasesData = data.phases.edges[0].node;
 
   return (
     <DefaultLayout heroCtaRef={ctaRef}>
       <SEO pathname={location.pathname} title='Home' />
-      <Hero ref={ctaRef} />
+      <Hero data={heroData} ref={ctaRef} />
       <Services data={servicesData} />
       <Technologies data={techData} />
       <Phases data={phasesData} />
@@ -30,6 +31,19 @@ export default function HomePage({ location, data }: PageProps<HomepageData>) {
 
 export const query = graphql`
   query HomePage {
+    hero: allContentfulLayoutHero {
+      edges {
+        node {
+          sectionModel {
+            id
+            caption
+            subTitle
+            ctaLink
+            invertSection
+          }
+        }
+      }
+    }
     services: allContentfulLayoutServices {
       edges {
         node {

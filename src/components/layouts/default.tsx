@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import { graphql, useStaticQuery } from 'gatsby';
 import { Global } from '@emotion/react';
 import { CSSReset } from '@chakra-ui/react';
-import { ContentfulLayout } from '../../types';
+import { LayoutData } from '../../types';
 
 import globalStyles from '../../styles/global';
 
@@ -20,25 +20,68 @@ interface DefaultLayoutProps {
 const DefaultLayout: React.FC<DefaultLayoutProps> = (props) => {
   const { heroCtaRef, children } = props;
 
-  const data: ContentfulLayout = useStaticQuery(graphql`
+  const data: LayoutData = useStaticQuery(graphql`
     query LayoutQuery {
-      defaultLayout: allContentfulLayout {
-        nodes {
-          contentModules {
-            ctaLink
-            ctaTitle
+      footerContent: allContentfulLayoutFooter {
+        edges {
+          node {
+            id
             title
             navigation {
               menues {
+                id
                 title
                 slug
-                id
                 megaMenu {
                   menuItems {
+                    id
+                    slug
+                    heading
+                  }
+                }
+              }
+            }
+            sectionModel {
+              id
+              component
+              variant
+              colorScheme
+              backgroundColor
+              textColor
+              titleColor
+              isGradiant
+              caption
+              title
+              subTitle
+              ctaModal {
+                id
+                ctaName
+                ctaLink
+                colorScheme
+                content
+              }
+            }
+          }
+        }
+      }
+      headerContent: allContentfulLayoutHeader {
+        edges {
+          node {
+            id
+            title
+            ctaLink
+            ctaTitle
+            navigation {
+              menues {
+                id
+                title
+                slug
+                megaMenu {
+                  menuItems {
+                    id
+                    slug
                     heading
                     subHeading
-                    slug
-                    id
                   }
                 }
               }
@@ -49,7 +92,8 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = (props) => {
     }
   `);
 
-  const headerData = data.defaultLayout.nodes[0].contentModules[0];
+  const headerData = data.headerContent.edges[0].node;
+  const footerData = data.footerContent.edges[0].node;
 
   return (
     <>
@@ -57,7 +101,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = (props) => {
       <Global styles={globalStyles} />
       <Header data={headerData} heroCtaRef={heroCtaRef} />
       <Main>{children}</Main>
-      <Footer data={[]} />
+      <Footer data={footerData} />
     </>
   );
 };

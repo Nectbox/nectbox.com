@@ -5,17 +5,19 @@ const theme = {
   colors: {
     background: {
       light: '#f7fafc',
-      lightGray: '#edf2f7',
       dark: '#1a202c',
+      darker: '#0A0A0A',
+      lightGray: '#edf2f7',
       gray: '#e2e8f0',
       shadow: '#da3654',
     },
     text: {
       light: '#f7fafc',
       dark: '#1a202c',
-      darkGray: '#2D3748',
-      gray: '#4A5568',
+      darker: '#171923',
       lightGray: '#718096',
+      gray: '#4A5568',
+      darkGray: '#2D3748',
     },
     accent: {
       red: '#da3654',

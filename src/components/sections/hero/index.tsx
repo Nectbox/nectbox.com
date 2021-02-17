@@ -3,16 +3,21 @@ import Image from 'gatsby-image';
 import { useStaticQuery, graphql } from 'gatsby';
 import { Button, Link, SplitSection } from '../../common';
 import { gradients } from '../../../styles/theme';
-import { FluidImageProps } from '../../../types';
+import { FluidImageProps, SplitSectionModel } from '../../../types';
 
-interface HeroImageProps {
-  heroImage: FluidImageProps;
+interface ShowcaseImageProps {
+  showcase: FluidImageProps;
 }
 
-const Hero = React.forwardRef<HTMLDivElement, {}>((_, ref) => {
-  const { heroImage }: HeroImageProps = useStaticQuery(graphql`
+interface HeroProps {
+  data: SplitSectionModel;
+}
+
+const Hero = React.forwardRef<HTMLDivElement, HeroProps>((props, ref) => {
+  const { caption, subTitle } = props.data.sectionModel;
+  const { showcase }: ShowcaseImageProps = useStaticQuery(graphql`
     query {
-      heroImage: file(relativePath: { eq: "hero.png" }) {
+      showcase: file(relativePath: { eq: "hero.png" }) {
         childImageSharp {
           fluid(maxWidth: 800) {
             ...GatsbyImageSharpFluid
@@ -26,16 +31,14 @@ const Hero = React.forwardRef<HTMLDivElement, {}>((_, ref) => {
   return (
     <SplitSection
       ref={ref}
-      caption='bringing businesses to digital'
+      caption={caption}
       title={
         <>
           We develop <br />
           <mark>fast sites & apps</mark>
         </>
       }
-      subTitle='Providing product strategy, and software development for startup
-                teams to launch and grow new digital products using cutting edge
-                technologies.'
+      subTitle={subTitle}
       customButton={
         <>
           <Button color={gradients.purpleish}>
@@ -48,7 +51,7 @@ const Hero = React.forwardRef<HTMLDivElement, {}>((_, ref) => {
       }
       rightPane={
         <Image
-          fluid={heroImage.childImageSharp.fluid}
+          fluid={showcase.childImageSharp.fluid}
           alt='Launching a new product'
         />
       }

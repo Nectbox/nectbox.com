@@ -35,4 +35,7 @@ export const Heading = styled(Text)`
 export const Content = styled(Text)`
   font-size: 1.9rem;
   color: ${theme.colors.text.gray};
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  word-break: keep-all;
 `;
