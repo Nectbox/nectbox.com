@@ -59,3 +59,7 @@ const BlogPage = ({ location }: PageProps) => {
 };
 
 export default BlogPage;
+
+//! could add this to renderMark object and you would be able to customise all the code tags
+//! [MARKS.CODE]: (text) => <code className="custom-class">{text}</code>
+//!  to modify what's inside paragraphs only; then handle it in your css `p code { some styling}`
