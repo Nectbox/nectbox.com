@@ -1,3 +1,4 @@
+import { FluidObject } from 'gatsby-image';
 import {
   ContentfulRichTextGatsbyReference,
   RenderRichTextData,
@@ -28,6 +29,10 @@ export interface HeaderModule {
 export interface FooterModule extends SectionModel {
   id: string;
   title: string;
+  description: string;
+  copyright: string;
+  contact: string;
+  socialMedia: ContentfulSocialMedia[];
   navigation: {
     menues: NavigationMenu[];
   };
@@ -123,6 +128,17 @@ export interface ContentfulIcon {
   id: string;
   alternateText: string;
   image: {
+    title: string;
+    file: {
+      url: string;
+    };
+  };
+}
+
+export interface ContentfulSocialMedia {
+  id: string;
+  slug: string;
+  icon: {
     title: string;
     file: {
       url: string;

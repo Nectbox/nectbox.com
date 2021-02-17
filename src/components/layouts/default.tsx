@@ -27,6 +27,19 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = (props) => {
           node {
             id
             title
+            description
+            copyright
+            contact
+            socialMedia {
+              slug
+              id
+              icon {
+                title
+                file {
+                  url
+                }
+              }
+            }
             navigation {
               menues {
                 id
