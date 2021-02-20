@@ -52,6 +52,7 @@ const Hero = React.forwardRef<HTMLDivElement, HeroProps>((props, ref) => {
       rightPane={
         <Image
           fluid={showcase.childImageSharp.fluid}
+          imgStyle={{ objectFit: 'contain' }}
           alt='Launching a new product'
         />
       }

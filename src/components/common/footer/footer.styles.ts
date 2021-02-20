@@ -43,13 +43,26 @@ export const NavigationWrapper = styled(Flex)`
   flex-grow: 1;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-left: 4.5rem;
+
+  @media (min-width: ${breakpoints.xs}) {
+    margin-left: 4.5rem;
+  }
 `;
 
 export const NavigationList = styled(List)`
+  display: flex;
+  flex-flow: column;
+  flex-grow: 1;
+  align-items: center;
+  text-align: center;
+  padding: 0 2rem 1rem;
   margin-right: 1.5rem;
   margin-bottom: 1.5rem;
-  padding: 0 2rem 1rem;
+
+  @media (min-width: ${breakpoints.xs}) {
+    display: block;
+    text-align: initial;
+  }
 
   &:last-of-type {
     margin-right: 0;

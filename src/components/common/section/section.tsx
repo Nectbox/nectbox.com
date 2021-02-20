@@ -104,7 +104,7 @@ const Section = React.forwardRef<HTMLElement, SectionProps>((props, ref) => {
                 {title}
               </Heading>
             )}
-            {subTitle && <SubHeading>{subTitle}</SubHeading>}
+            {subTitle && <SubHeading top={top ? 1 : 0}>{subTitle}</SubHeading>}
             {top && <CustomTop>{top}</CustomTop>}
           </TopContent>
           <SectionContent wide={wideContent} {...contentPorps}>

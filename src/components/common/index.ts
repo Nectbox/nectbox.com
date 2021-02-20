@@ -7,4 +7,5 @@ export { default as Link } from './link';
 export { default as Section } from './section';
 export { default as SEO } from './seo';
 export { default as SplitSection } from './split-section';
+export { default as Accordion } from './accordion';
 export * from './menu';

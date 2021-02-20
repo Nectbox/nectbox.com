@@ -77,7 +77,7 @@ const Footer: React.FC<FooterProps> = (props) => {
             </Contact>
             <SocialMediaWrapper>
               {socialMedia.map((media) => (
-                <Link to={media.slug} isExternal>
+                <Link key={media.id} to={media.slug} isExternal>
                   <img
                     src={media.icon.file.url}
                     alt={media.icon.title}

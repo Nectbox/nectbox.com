@@ -12,39 +12,40 @@ import { SectionModel, ServicesContentType } from '../../../types';
 
 export interface ServicesProps {
   data: SectionModel<ServicesContentType>;
+  showBottom?: boolean;
+  showSubTitle?: boolean;
 }
 
 const Services: React.FC<ServicesProps> = (props) => {
   const {
-    title,
-    caption,
-    subTitle,
-    colorScheme,
-    ctaModal,
-    sectionContent,
-  } = props.data.sectionModel;
+    data: { sectionModel },
+    showBottom,
+    showSubTitle,
+  } = props;
 
   return (
     <Section
-      colorScheme={colorScheme}
-      caption={caption}
-      title={title}
-      subTitle={subTitle}
+      colorScheme={sectionModel.colorScheme}
+      caption={sectionModel.caption}
+      title={sectionModel.title}
+      subTitle={showSubTitle && sectionModel.subTitle}
       bottom={
-        <CallToAction
-          content={ctaModal.content}
-          ctaName={ctaModal.ctaName}
-          ctaLink={ctaModal.ctaLink}
-          colorScheme={colorScheme}
-        />
+        showBottom && (
+          <CallToAction
+            content={sectionModel.ctaModal.content}
+            ctaName={sectionModel.ctaModal.ctaName}
+            ctaLink={sectionModel.ctaModal.ctaLink}
+            colorScheme={sectionModel.colorScheme}
+          />
+        )
       }>
       <CardWrapper>
-        {sectionContent.contentType.map((entry) => (
+        {sectionModel.sectionContent.contentType.map((entry) => (
           <ServiceCard key={entry.id}>
             <Link to={`/${entry.ctaLink}`}>
               <Heading as='h3'>{entry.title}</Heading>
               <Description>{entry.text}</Description>
-              <Action color={colorScheme} as='button'>
+              <Action color={sectionModel.colorScheme} as='button'>
                 Read more about {entry.ctaName}
                 <ArrowRightIcon />
               </Action>
@@ -54,6 +55,11 @@ const Services: React.FC<ServicesProps> = (props) => {
       </CardWrapper>
     </Section>
   );
+};
+
+Services.defaultProps = {
+  showBottom: true,
+  showSubTitle: true,
 };
 
 export default Services;
