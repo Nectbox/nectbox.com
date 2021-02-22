@@ -1,50 +1,36 @@
-import {
-  Accordion as CAccordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
-  Box,
-} from '@chakra-ui/react';
 import * as React from 'react';
+import { Accordion as AccordionWrapper, AccordionIcon } from '@chakra-ui/react';
+import {
+  AccordionItem,
+  AccordionButton,
+  Question,
+  Answer,
+} from './accordion.styles';
 
-const Accordion = () => {
+export interface AccordionProps {
+  data: QData[];
+}
+
+export type QData = {
+  q: string;
+  a: string;
+};
+
+const Accordion: React.FC<AccordionProps> = (props) => {
+  const { data } = props;
+
   return (
-    <CAccordion allowToggle flexGrow={1}>
-      <AccordionItem>
-        <h2>
+    <AccordionWrapper allowToggle flexGrow={1}>
+      {data?.map((entry) => (
+        <AccordionItem>
           <AccordionButton>
-            <Box flex='1' textAlign='left'>
-              Section 1 title
-            </Box>
+            <Question as='h3'>{entry.q}</Question>
             <AccordionIcon />
           </AccordionButton>
-        </h2>
-        <AccordionPanel pb={4}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
-        </AccordionPanel>
-      </AccordionItem>
-
-      <AccordionItem>
-        <h2>
-          <AccordionButton>
-            <Box flex='1' textAlign='left'>
-              Section 2 title
-            </Box>
-            <AccordionIcon />
-          </AccordionButton>
-        </h2>
-        <AccordionPanel pb={4}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
-        </AccordionPanel>
-      </AccordionItem>
-    </CAccordion>
+          <Answer>{entry.a}</Answer>
+        </AccordionItem>
+      ))}
+    </AccordionWrapper>
   );
 };
 
