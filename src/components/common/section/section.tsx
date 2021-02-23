@@ -52,6 +52,7 @@ export interface SectionProps extends BackgroundOptions, ColorOptions {
   children?: Component;
   wideContent?: boolean;
   reverseContent?: boolean;
+  id?: string;
 }
 
 /**

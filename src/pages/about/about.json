@@ -54,14 +54,5 @@
         "content": "Our mission is focused on what moves us forward collectively. Great ideas and initiatives can come from anywhere, so everyone's voice is heard."
       }
     ]
-  },
-  "recommandSection": {
-    "caption": "Check out other services",
-    "title": "JAMstack websites",
-    "ctaInfo": {
-      "content": "Get your website an unfair advantage in ranking and create value for your business.",
-      "ctaName": "Read more",
-      "ctaLink": "services/jamstack-website"
-    }
   }
 }
