@@ -1,0 +1,67 @@
+{
+  "heroData": {
+    "caption": "development studio",
+    "subTitle": "The first step in reaching new customers or gaining visibility for your brand starts with your personalized and performant store for your audience."
+  },
+  "beliefsData": {
+    "title": "Our set of beliefs reflect who we are",
+    "subTitle": "We solve problems and create positive change by providing value through a true partnership.",
+    "data": [
+      {
+        "id": "1a",
+        "title": "Build With Purpose",
+        "content": "A deep understanding of our users drives us to empathize and develop compassion for the problems they have. This allows us to craft the right solution that enables empowerment."
+      },
+      {
+        "id": "1b",
+        "title": "People Over Profit",
+        "content": "We believe in people helping people. We make decisions based on what creates more value for people (partners & crew members), not the bottom line."
+      },
+      {
+        "id": "1c",
+        "title": "Collaboration is Key",
+        "content": "Successful collaboration with inclusion, transparency, and empowerment enables autonomous progress across the board."
+      },
+      {
+        "id": "1d",
+        "title": "Outcomes, Not Features",
+        "content": "We care about generating specific outcomes and continuously creating more value. We iterate features to correct course and hit goals."
+      }
+    ]
+  },
+  "valuesData": {
+    "title": "Our core values shape the way we think",
+    "subTitle": "When you stop expecting people to be perfect, you can like them for who they are.",
+    "data": [
+      {
+        "id": "1a",
+        "title": "Growth Mindset",
+        "content": "To make progress, we must establish an insatiable appetite for increased knowledge. We grow when our people grow and we embrace our role to continually share our collective knowledge."
+      },
+      {
+        "id": "1b",
+        "title": "People Focused",
+        "content": "We value people, their perspectives, and the problems we can help them overcome. You are not your work, but you bring something unique and powerful to it."
+      },
+      {
+        "id": "1c",
+        "title": "Self Motivated",
+        "content": "Moving our partners forward is important to us. If something is broken, see that a better solution gets put in place. Look for more opportunities to create value and pitch in."
+      },
+      {
+        "id": "1d",
+        "title": "Equality",
+        "content": "Our mission is focused on what moves us forward collectively. Great ideas and initiatives can come from anywhere, so everyone's voice is heard."
+      }
+    ]
+  },
+  "recommandSection": {
+    "caption": "Check out other services",
+    "title": "JAMstack websites",
+    "ctaInfo": {
+      "content": "Get your website an unfair advantage in ranking and create value for your business.",
+      "ctaName": "Read more",
+      "ctaLink": "services/jamstack-website"
+    }
+  }
+}
