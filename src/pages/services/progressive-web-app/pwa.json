@@ -1,0 +1,51 @@
+{
+  "heroData": {
+    "caption": "Progressive web app",
+    "subTitle": "PWAs are offering the best of Native Applications and Web technology at your users fingertips. Build a fast and scalable web application."
+  },
+  "infoData": {
+    "caption": "native in the browser",
+    "title": "Somewhere in between a website and an app",
+    "subTitle": "Progressive Web Applications are great for when you want to move web-apps to mobile devices. Jamstack approach to PWA helped us get the best performance with low costs of build and great scalability.",
+    "more": {
+      "content": "Want to find out more about what PWAs are ?",
+      "ctaName": "PWAs explained",
+      "ctaLink": ""
+    }
+  },
+  "supportData": {
+    "caption": "app-like experience",
+    "title": "How PWAs help your business",
+    "data": [
+      {
+        "id": "1a",
+        "title": "Mobile experience",
+        "content": "PWAs deliver native experience in the browser without the need to download an app. Plus they create a rich, capable user experience, even when the user is offline."
+      },
+      {
+        "id": "1b",
+        "title": "One development",
+        "content": "Don’t bother building many platforms for different systems and devices. Save money instead - PWAs bridges the gap between websites and mobile apps."
+      },
+      {
+        "id": "1c",
+        "title": "Scalability",
+        "content": "PWAs are great for moving web apps to mobile devices. The serverless architecture scales automatically as your user base or usage increases."
+      },
+      {
+        "id": "1d",
+        "title": "Great performance",
+        "content": "By cache site assets, you get an incredibly fast native mobile platform feel with many of the benefits of a web app, in your browser."
+      }
+    ]
+  },
+  "recommandSection": {
+    "caption": "Check out other services",
+    "title": "eCommerce website",
+    "ctaInfo": {
+      "content": "Increase convertion rate by moving your store to digital.",
+      "ctaName": "Read more",
+      "ctaLink": "services/ecommerce"
+    }
+  }
+}

@@ -30,7 +30,7 @@ export const Content = styled(Flex)`
 
     @media (min-width: ${theme.breakpoints.lg}) {
       margin-bottom: 0;
-      flex: 1;
+      flex: ${(props) => (props.contentwide ? '75%' : 1)};
 
       ${(props) =>
         props.contentposition
@@ -55,7 +55,7 @@ export const Content = styled(Flex)`
 
   & > .right-pane {
     @media (min-width: ${theme.breakpoints.lg}) {
-      flex: 1;
+      flex: ${(props) => (props.contentwide ? '25%' : 1)};
 
       ${(props) =>
         props.contentposition

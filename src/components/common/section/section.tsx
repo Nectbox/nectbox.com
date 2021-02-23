@@ -107,10 +107,14 @@ const Section = React.forwardRef<HTMLElement, SectionProps>((props, ref) => {
             {subTitle && <SubHeading top={top ? 1 : 0}>{subTitle}</SubHeading>}
             {top && <CustomTop>{top}</CustomTop>}
           </TopContent>
-          <SectionContent wide={wideContent} {...contentPorps}>
-            {children}
-          </SectionContent>
-          {bottom && <BottomContent>{bottom}</BottomContent>}
+          {children && (
+            <SectionContent wide={wideContent} {...contentPorps}>
+              {children}
+            </SectionContent>
+          )}
+          {bottom && (
+            <BottomContent iscontent={children ? 1 : 0}>{bottom}</BottomContent>
+          )}
         </Background>
       </Container>
     </SectionWrapper>

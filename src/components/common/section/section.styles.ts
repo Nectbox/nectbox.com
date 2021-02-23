@@ -107,7 +107,7 @@ export const CustomTop = styled(Flex)`
 
 export const BottomContent = styled(Flex)`
   justify-content: center;
-  margin-top: 6.5rem;
+  margin-top: ${(props) => (props.iscontent ? '6.5rem' : 0)};
 `;
 
 export const SectionContentWrapper = styled(Flex)`
