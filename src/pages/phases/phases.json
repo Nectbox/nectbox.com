@@ -1,0 +1,97 @@
+{
+  "heroData": {
+    "subTitle": "Almost any idea or product can be built, but does it create enough value for your clients? Is there a place on the market for it? We will take you from the initial idea all the way thorugh development, scaling and transforming your product to fit your market requirements."
+  },
+  "phases": [
+    {
+      "name": "idea",
+      "color": "purple",
+      "variant": "background",
+      "caption": "Validate your idea",
+      "title": "Idea",
+      "subTitle": "You have an idea for a digital product - but you don’t know if it’s worth investing your time and resources. Does it solve a real problem? Is anyone willing to buy it? We’ll answer these questions and more while gaining an in-depth understanding of your users and your market. We'll leverage the develop-measure-learn cycle, a series of user interviews, and rapid prototyping to sell to your customers before building the product.",
+      "data": [
+        {
+          "id": "1a",
+          "title": "Launch the right product",
+          "content": "Building a product is risky, and most businesses fail. Not because they can't build a product, but because they build a product no one wants."
+        },
+        {
+          "id": "1b",
+          "title": "Gather evidence",
+          "content": "We validate and test the assumptions businesses have about their idea, customers, and market. We'll gain evidence that helps them move from customer development to product development with confidence."
+        }
+      ]
+    },
+    {
+      "name": "develop",
+      "color": "red",
+      "variant": "transparent",
+      "caption": "make it happen",
+      "title": "Develop",
+      "subTitle": "Maintain a user-centered approach throughout the build process, keeping customers and prospects engaged. We build and release early to hone the product and increase the value you provide.",
+      "data": [
+        {
+          "id": "2a",
+          "title": "Develop the right way",
+          "content": "Using scalable and open source technologies, we execute on a shared vision with what we've learned from the feedback gathered during idea phase."
+        },
+        {
+          "id": "2b",
+          "title": "Continuous improvement",
+          "content": "Release early to test functionality, usability, and test the value your product delivers to your clients."
+        }
+      ]
+    },
+    {
+      "name": "scale",
+      "color": "purple",
+      "variant": "background",
+      "caption": "sustain your business",
+      "title": "Scale",
+      "subTitle": "Once launched, we define success metrics and a roadmap to grow your product. We align building a sustainable business with the needs of your customers to create value for everyone involved.",
+      "data": [
+        {
+          "id": "3a",
+          "title": "Data-driven approach",
+          "content": "Implement the right tracking systems to understand what customers are doing and where they're getting the most value. Continuously gather qualitative and quantitative data to create a clear vision to more value and better experiences."
+        },
+        {
+          "id": "3b",
+          "title": "Accelerate growth",
+          "content": "Short-cut the learning cycle from months to weeks. Accelerate value for users by focusing on the most valuable opportunities first and understanding what customers need."
+        }
+      ]
+    },
+    {
+      "name": "transform",
+      "color": "red",
+      "variant": "transparent",
+      "caption": "Empower your business",
+      "title": "Transform",
+      "subTitle": "Become a pioneer and leverage a digital-first mindset. Map, understand, and re-imagine the experiences of everyone who engages with your business; your customers, employees, vendors, and partners.",
+      "data": [
+        {
+          "id": "4a",
+          "title": "Simplify the process",
+          "content": "Reduce the risk of lost data, remove bottlenecks, and automate your current process. It's time to close the gaps and improve the way you do business."
+        },
+        {
+          "id": "4b",
+          "title": "Get focused",
+          "content": "Take advantage of your data and knowledge to gain accurate insights so your team can make better decisions and focus on more impactful work."
+        }
+      ]
+    }
+  ],
+  "recommandSection": {
+    "caption": "our services",
+    "title": "What can Nectbox do for you",
+    "subTitle": "Providing product strategy, and software development for startup teams to launch and grow new digital products using cutting edge technologies.",
+    "ctaInfo": {
+      "content": "Check out more about what we have to offer",
+      "ctaName": "Services",
+      "ctaLink": "services"
+    }
+  }
+}

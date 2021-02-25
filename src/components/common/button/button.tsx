@@ -1,10 +1,10 @@
 import * as React from 'react';
+import { ButtonProps as ChakraButtonProps } from '@chakra-ui/react';
 import { NormalButton, BorderedButton, ButtonWrapper } from './button.styles';
 
-interface ButtonProps {
+interface ButtonProps extends ChakraButtonProps {
   as?: React.ElementType<any>;
   color?: string;
-  margin?: string;
   variant?: 'normal' | 'bordered' | 'colored';
 }
 

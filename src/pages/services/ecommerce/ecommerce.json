@@ -1,0 +1,51 @@
+{
+  "heroData": {
+    "caption": "eCommerce website",
+    "subTitle": "The first step in reaching new customers or gaining visibility for your brand starts with your personalized and performant store for your audience."
+  },
+  "infoData": {
+    "caption": "modern shopping experience",
+    "title": "A fast performing and secure eCommerce solution",
+    "subTitle": "Thanks to tools like static site generators and CI/CD edge platforms anything can be done on the web these days. Brands that have anywhere between a few hundred to two thousand pages and brands with products that don’t need to be updated regularly can benefit from JAMstack eCommerce.",
+    "more": {
+      "content": "Want to find out more about what JAMstack eCommerce ?",
+      "ctaName": "eCommerce on jamstack",
+      "ctaLink": ""
+    }
+  },
+  "supportData": {
+    "caption": "fast and reliable",
+    "title": "How JAMstack eCommerce helps your business",
+    "data": [
+      {
+        "id": "1a",
+        "title": "Stand out",
+        "content": "A rich ecosystem with tools like BigCommerce or Snipcart helps. On top of that Shopify offers more with Jamstack approach. So does WordPress."
+      },
+      {
+        "id": "1b",
+        "title": "Security",
+        "content": "Withdrawing complex server-side architectures reduces potential breaches and the need for constant maintenance."
+      },
+      {
+        "id": "1c",
+        "title": "Lower costs",
+        "content": "By ditching servers, databases, and plugins, you’ll inevitably reduce development time and cut operational costs."
+      },
+      {
+        "id": "1d",
+        "title": "Great performance",
+        "content": "Replacing database queries with CDN-based content serving allows for faster load times."
+      }
+    ]
+  },
+  "recommandSection": {
+    "caption": "Check out other services",
+    "title": "JAMstack websites",
+    "ctaInfo": {
+      "content": "Get your website an unfair advantage in ranking and create value for your business.",
+      "ctaName": "Read more",
+      "ctaLink": "services/jamstack-website"
+    }
+  }
+}

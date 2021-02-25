@@ -5,7 +5,7 @@ import { BoxWrapper, Heading, Content } from './box.styles';
 interface BoxProps {
   title: string;
   content: string;
-  src: FixedObject | FixedObject[];
+  src?: FixedObject | FixedObject[];
   withNumber?: boolean;
   number?: number;
 }
@@ -14,8 +14,8 @@ const Box = (props: BoxProps) => {
   const { src, title, content, number, withNumber, ...restProps } = props;
 
   return (
-    <BoxWrapper content={number} showContent={withNumber} {...restProps}>
-      <Image fixed={src} alt={title} />
+    <BoxWrapper content={number} show={withNumber ? 1 : 0} {...restProps}>
+      {src && <Image fixed={src} alt={title} />}
       <Heading as='h3'>{title}</Heading>
       <Content>{content}</Content>
     </BoxWrapper>

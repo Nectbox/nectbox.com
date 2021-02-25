@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import theme from '../../../styles/theme';
 import { css } from '@emotion/react';
 import { Flex, Text } from '@chakra-ui/react';
-import { BackgroundOptions } from './section';
+import { BackgroundOptions, ColorOptions } from './section';
 
 export const SectionWrapper = styled.section<BackgroundOptions>`
   padding: 7.5rem 0;
@@ -26,12 +26,13 @@ export const Background = styled.div<BackgroundOptions>`
     `}
 `;
 
-export const TopContent = styled.header`
-  width: 100%;
+export const TopContent = styled.header<ColorOptions>`
+  width: 95%;
   display: flex;
   flex-flow: column;
   text-align: center;
-  margin: 0 auto 10rem;
+  margin: 0 auto;
+  color: ${(props) => props.txtColor};
 
   @media (min-width: ${theme.breakpoints.sm}) {
     width: 90%;
@@ -61,13 +62,22 @@ export const Caption = styled(Text)`
 
 export const Heading = styled(Text)`
   font-family: ${theme.fonts.heading};
-  font-size: 5.35rem;
+  font-size: 5.15rem;
   font-weight: 700;
-  line-height: 6.65rem;
+  line-height: 6rem;
   margin-bottom: 6rem;
+
+  ${(props) =>
+    props.gradiant &&
+    css`
+      background: ${props.color};
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    `};
 
   @media (min-width: ${theme.breakpoints.md}) {
     font-size: 5.7rem;
+    line-height: 6.6rem;
   }
 
   @media (min-width: ${theme.breakpoints.lg}) {
@@ -79,15 +89,32 @@ export const SubHeading = styled(Text)`
   width: 85%;
   align-self: center;
   font-size: 2rem;
+  color: inherit;
+  margin-bottom: ${(props) => (props.top ? 0 : '10rem')};
+
+  ${(props) =>
+    props.marginBottom || props.mb
+      ? css`
+          margin-bottom: ${props.marginBottom || props.mb};
+        `
+      : null};
 
   @media (min-width: ${theme.breakpoints.xs}) {
     font-size: 2.45rem;
   }
 `;
 
+export const CustomTop = styled(Flex)`
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4.5rem;
+  margin-bottom: 8rem;
+`;
+
 export const BottomContent = styled(Flex)`
   justify-content: center;
-  margin-top: 6.5rem;
+  margin-top: ${(props) => (props.iscontent ? '6.5rem' : 0)};
 `;
 
 export const SectionContentWrapper = styled(Flex)`

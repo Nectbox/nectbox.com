@@ -1,0 +1,51 @@
+{
+  "heroData": {
+    "caption": "JAMstack websites",
+    "subTitle": "Get your website an unfair advantage in SERP rankings. We build JAMstack websites with battle-tested SSG technologies and most popular headless CMS."
+  },
+  "infoData": {
+    "caption": "what is jamstack",
+    "title": "A modern web development architecture",
+    "subTitle": "Jamstack approach enables you to run a fully dynamic site while the actual assets are pre-rendered static files deployed on CDN. For you, it means faster, more secure, more reliable websites with better SEO ranking capabilities and happier users overall.",
+    "more": {
+      "content": "Want to find out more about what JAMstack means ?",
+      "ctaName": "JAMstack explained",
+      "ctaLink": ""
+    }
+  },
+  "supportData": {
+    "caption": "Light but bulletproof",
+    "title": "How jamstack helps your business",
+    "data": [
+      {
+        "id": "1a",
+        "title": "Excellent performance",
+        "content": "No database means no time-consuming multiple queries. Static sites are faster sites, even up to 10x."
+      },
+      {
+        "id": "1b",
+        "title": "SEO Advantage",
+        "content": "Going static also means better ranking possibilities, what equals more traffic and more $$$."
+      },
+      {
+        "id": "1c",
+        "title": "Easy content management",
+        "content": "Headless CMS-es lets you build websites that are both easy to use and customizable"
+      },
+      {
+        "id": "1d",
+        "title": "Lower costs",
+        "content": "Traffic bigger than usual? Not an issue, JAMstack websites are fast and don't cost a fortune"
+      }
+    ]
+  },
+  "recommandSection": {
+    "caption": "Check out other services",
+    "title": "Progressive Web Apps",
+    "ctaInfo": {
+      "content": "Build a fast and scalable web application with all the native app’s features",
+      "ctaName": "Read more",
+      "ctaLink": "services/progressive-web-app"
+    }
+  }
+}
