@@ -34,4 +34,7 @@ export default css`
     text-decoration: none;
     color: inherit;
   }
+  p code{
+    color: red;
+  }
 `;

@@ -25,4 +25,30 @@ export interface SiteMetadeta {
   };
 }
 
+// Making interfaces to use node and generate slug/pages
+export interface PageInput {
+   path: string
+   component: string
+   layout?: string
+   context: any
+}
+
+interface BoundActionCreators {
+  createPage: (page: PageInput) => void
+  deletePage: (page: PageInput ) => void
+  createRedirect: (
+    opts: {
+      fromPath: string
+      isPermanent: boolean
+      redirectBrowser?: boolean
+      toPath: string
+    }
+  ) => void
+}
+
+export type GatsbyCreatePages = (
+  fns: {graphql: any; boundActionCreators: BoundActionCreators}
+) => void
+
+
 export type ValueOf<T> = T extends any[] ? T[number] : T[keyof T];
