@@ -8,4 +8,6 @@ export { default as Section } from './section';
 export { default as SEO } from './seo';
 export { default as SplitSection } from './split-section';
 export { default as Accordion } from './accordion';
+export { default as ContactForm } from './contact-form';
+export { default as Alert } from './alert';
 export * from './menu';

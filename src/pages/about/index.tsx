@@ -3,7 +3,6 @@ import { PageProps } from 'gatsby';
 import { Grid } from '@chakra-ui/react';
 import {
   Box,
-  CallToAction,
   DefaultLayout,
   Section,
   SEO,
