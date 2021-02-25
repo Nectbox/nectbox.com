@@ -92,6 +92,13 @@ export const SubHeading = styled(Text)`
   color: inherit;
   margin-bottom: ${(props) => (props.top ? 0 : '10rem')};
 
+  ${(props) =>
+    props.marginBottom || props.mb
+      ? css`
+          margin-bottom: ${props.marginBottom || props.mb};
+        `
+      : null};
+
   @media (min-width: ${theme.breakpoints.xs}) {
     font-size: 2.45rem;
   }

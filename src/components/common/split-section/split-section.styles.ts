@@ -4,6 +4,7 @@ import { css } from '@emotion/react';
 import { Flex, Text, Heading as CHeading } from '@chakra-ui/react';
 
 export const SplitSectionWrapper = styled.section`
+  width: 100%;
   padding: 7.5rem 0;
 `;
 

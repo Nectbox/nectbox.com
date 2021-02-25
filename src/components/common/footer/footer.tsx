@@ -23,9 +23,11 @@ interface BrandingProps {
 
 interface FooterProps {
   data: FooterModule;
+  showTop: boolean;
 }
 
 const Footer: React.FC<FooterProps> = (props) => {
+  const { showTop, data } = props;
   const {
     navigation,
     sectionModel,
@@ -33,7 +35,7 @@ const Footer: React.FC<FooterProps> = (props) => {
     description,
     contact,
     copyright,
-  } = props.data;
+  } = data;
 
   const { branding }: BrandingProps = useStaticQuery(graphql`
     query {

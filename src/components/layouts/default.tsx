@@ -15,10 +15,11 @@ const Main = styled.main`
 
 interface DefaultLayoutProps {
   heroCtaRef?: React.MutableRefObject<any>;
+  showFooterTop?: boolean;
 }
 
 const DefaultLayout: React.FC<DefaultLayoutProps> = (props) => {
-  const { heroCtaRef, children } = props;
+  const { heroCtaRef, showFooterTop, children } = props;
 
   const data: LayoutData = useStaticQuery(graphql`
     query LayoutQuery {
@@ -114,9 +115,13 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = (props) => {
       <Global styles={globalStyles} />
       <Header data={headerData} heroCtaRef={heroCtaRef} />
       <Main>{children}</Main>
-      <Footer data={footerData} />
+      <Footer data={footerData} showTop={showFooterTop} />
     </>
   );
+};
+
+DefaultLayout.defaultProps = {
+  showFooterTop: true,
 };
 
 export default DefaultLayout;
