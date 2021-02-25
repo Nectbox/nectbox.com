@@ -27,11 +27,11 @@ export const Background = styled.div<BackgroundOptions>`
 `;
 
 export const TopContent = styled.header<ColorOptions>`
-  width: 100%;
+  width: 95%;
   display: flex;
   flex-flow: column;
   text-align: center;
-  margin: 0 auto 10rem;
+  margin: 0 auto;
   color: ${(props) => props.txtColor};
 
   @media (min-width: ${theme.breakpoints.sm}) {
@@ -62,9 +62,9 @@ export const Caption = styled(Text)`
 
 export const Heading = styled(Text)`
   font-family: ${theme.fonts.heading};
-  font-size: 5.35rem;
+  font-size: 5.15rem;
   font-weight: 700;
-  line-height: 6.65rem;
+  line-height: 6rem;
   margin-bottom: 6rem;
 
   ${(props) =>
@@ -77,6 +77,7 @@ export const Heading = styled(Text)`
 
   @media (min-width: ${theme.breakpoints.md}) {
     font-size: 5.7rem;
+    line-height: 6.6rem;
   }
 
   @media (min-width: ${theme.breakpoints.lg}) {
@@ -89,6 +90,14 @@ export const SubHeading = styled(Text)`
   align-self: center;
   font-size: 2rem;
   color: inherit;
+  margin-bottom: ${(props) => (props.top ? 0 : '10rem')};
+
+  ${(props) =>
+    props.marginBottom || props.mb
+      ? css`
+          margin-bottom: ${props.marginBottom || props.mb};
+        `
+      : null};
 
   @media (min-width: ${theme.breakpoints.xs}) {
     font-size: 2.45rem;
@@ -100,11 +109,12 @@ export const CustomTop = styled(Flex)`
   justify-content: center;
   align-items: center;
   margin-top: 4.5rem;
+  margin-bottom: 8rem;
 `;
 
 export const BottomContent = styled(Flex)`
   justify-content: center;
-  margin-top: 6.5rem;
+  margin-top: ${(props) => (props.iscontent ? '6.5rem' : 0)};
 `;
 
 export const SectionContentWrapper = styled(Flex)`

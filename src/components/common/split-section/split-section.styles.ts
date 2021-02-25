@@ -4,6 +4,7 @@ import { css } from '@emotion/react';
 import { Flex, Text, Heading as CHeading } from '@chakra-ui/react';
 
 export const SplitSectionWrapper = styled.section`
+  width: 100%;
   padding: 7.5rem 0;
 `;
 
@@ -30,7 +31,7 @@ export const Content = styled(Flex)`
 
     @media (min-width: ${theme.breakpoints.lg}) {
       margin-bottom: 0;
-      flex: 48%;
+      flex: ${(props) => (props.contentwide ? '75%' : 1)};
 
       ${(props) =>
         props.contentposition
@@ -55,7 +56,7 @@ export const Content = styled(Flex)`
 
   & > .right-pane {
     @media (min-width: ${theme.breakpoints.lg}) {
-      flex: 52%;
+      flex: ${(props) => (props.contentwide ? '25%' : 1)};
 
       ${(props) =>
         props.contentposition
@@ -100,6 +101,7 @@ export const Caption = styled(Text)`
 `;
 
 export const Heading = styled(Text)<{ scheme: string }>`
+  width: 100%;
   font-size: 7.2rem;
   line-height: ${(props) => (props.lineHeight ? props.lineHeight : '6.8rem')};
   font-family: ${theme.fonts.heading};
@@ -111,6 +113,14 @@ export const Heading = styled(Text)<{ scheme: string }>`
     background: ${(props) => props.scheme};
     background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+
+  @media (min-width: ${theme.breakpoints.sm}) {
+    width: 90%;
+  }
+
+  @media (min-width: ${theme.breakpoints.lg}) {
+    width: 98%;
   }
 
   @media (min-width: ${theme.breakpoints.xl}) {
@@ -127,6 +137,6 @@ export const SubHeading = styled(Text)`
   margin-bottom: 4.5rem;
 
   @media (min-wdith: ${theme.breakpoints.lg}) {
-    width: 93%;
+    width: 90%;
   }
 `;

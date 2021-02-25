@@ -24,6 +24,7 @@ export interface SplitSectionProps {
   customButton?: Component;
   invert?: boolean;
   headingProps?: Record<string, unknown>;
+  wide?: boolean;
 }
 
 const SplitSection = React.forwardRef<HTMLElement, SplitSectionProps>(
@@ -39,6 +40,7 @@ const SplitSection = React.forwardRef<HTMLElement, SplitSectionProps>(
       ctaName,
       customButton,
       invert,
+      wide,
       headingProps,
       ...restProps
     } = props;
@@ -46,7 +48,7 @@ const SplitSection = React.forwardRef<HTMLElement, SplitSectionProps>(
     return (
       <SplitSectionWrapper ref={ref} {...restProps}>
         <Container maxW={width} p='0 1.6rem'>
-          <Content contentposition={invert ? 1 : 0}>
+          <Content contentposition={invert ? 1 : 0} contentwide={wide ? 1 : 0}>
             <Flex className='left-pane'>
               {caption && <Caption>{caption}</Caption>}
               {title && (
@@ -76,6 +78,7 @@ const SplitSection = React.forwardRef<HTMLElement, SplitSectionProps>(
 SplitSection.defaultProps = {
   colorScheme: gradients.purple,
   invert: false,
+  wide: false,
 };
 
 export default SplitSection;

@@ -49,9 +49,11 @@ export interface SectionProps extends BackgroundOptions, ColorOptions {
   title?: string;
   subTitle?: string;
   contentPorps?: Record<string, unknown>;
+  subTitleProps?: Record<string, unknown>;
   children?: Component;
   wideContent?: boolean;
   reverseContent?: boolean;
+  id?: string;
 }
 
 /**
@@ -84,6 +86,7 @@ const Section = React.forwardRef<HTMLElement, SectionProps>((props, ref) => {
     title,
     subTitle,
     contentPorps,
+    subTitleProps,
     wideContent,
     gradiant,
     children,
@@ -104,13 +107,21 @@ const Section = React.forwardRef<HTMLElement, SectionProps>((props, ref) => {
                 {title}
               </Heading>
             )}
-            {subTitle && <SubHeading>{subTitle}</SubHeading>}
+            {subTitle && (
+              <SubHeading top={top ? 1 : 0} {...subTitleProps}>
+                {subTitle}
+              </SubHeading>
+            )}
             {top && <CustomTop>{top}</CustomTop>}
           </TopContent>
-          <SectionContent wide={wideContent} {...contentPorps}>
-            {children}
-          </SectionContent>
-          {bottom && <BottomContent>{bottom}</BottomContent>}
+          {children && (
+            <SectionContent wide={wideContent} {...contentPorps}>
+              {children}
+            </SectionContent>
+          )}
+          {bottom && (
+            <BottomContent iscontent={children ? 1 : 0}>{bottom}</BottomContent>
+          )}
         </Background>
       </Container>
     </SectionWrapper>
