@@ -40,7 +40,7 @@ export interface SectionProps {
   id?: string;
   component?: React.ElementType<any>;
   variant?: 'transparent' | 'background';
-  options: ColorOptions;
+  options?: ColorOptions;
   colorScheme?: string;
   caption?: string;
   title?: string;

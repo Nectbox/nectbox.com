@@ -29,7 +29,7 @@ const Services: React.FC<ServicesProps> = (props) => {
       caption={sectionModel.caption}
       title={sectionModel.title}
       subTitle={showSubTitle && sectionModel.subTitle}
-      bottom={
+      customBottom={
         showBottom && (
           <CallToAction
             content={sectionModel.ctaModal.content}
