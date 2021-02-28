@@ -28,32 +28,29 @@ SectionContent.defaultProps = {
   wide: false,
 };
 
-export interface BackgroundOptions {
-  variant?: 'transparent' | 'background';
-  bgColor?: string;
-}
-
 export interface ColorOptions {
   txtColor?: string;
   captionColor?: string;
   titleColor?: string;
   gradiant?: boolean;
+  bgColor?: string;
 }
 
-export interface SectionProps extends BackgroundOptions, ColorOptions {
+export interface SectionProps {
+  id?: string;
   component?: React.ElementType<any>;
+  variant?: 'transparent' | 'background';
+  options: ColorOptions;
   colorScheme?: string;
-  top?: Component;
-  bottom?: Component;
   caption?: string;
   title?: string;
   subTitle?: string;
   contentPorps?: Record<string, unknown>;
   subTitleProps?: Record<string, unknown>;
+  customTop?: Component;
+  customBottom?: Component;
   children?: Component;
   wideContent?: boolean;
-  reverseContent?: boolean;
-  id?: string;
 }
 
 /**
@@ -61,6 +58,7 @@ export interface SectionProps extends BackgroundOptions, ColorOptions {
  *
  * @param {Component} [component='section'] The component `element` to be rendered
  * @param {SectionProps['variant']} [variant='transparent'] Component variant, defaults to `transparent`
+ * @param {SectionProps['options']} options An object used to pass aditional color options
  * @param {SectionProps['bgColor']} bgColor Component background color, defaults to `lightGray`
  * @param {SectionProps['txtColor']} txtColor Component color, defaults to `dark`
  * @param {SectionProps['colorScheme']} colorScheme Component general color scheme
@@ -75,20 +73,16 @@ const Section = React.forwardRef<HTMLElement, SectionProps>((props, ref) => {
   const {
     component,
     variant,
-    bgColor,
-    txtColor,
-    captionColor,
-    titleColor,
+    options,
     colorScheme,
-    top,
-    bottom,
     caption,
     title,
     subTitle,
     contentPorps,
     subTitleProps,
+    customTop,
+    customBottom,
     wideContent,
-    gradiant,
     children,
     ...restProps
   } = props;
@@ -96,31 +90,35 @@ const Section = React.forwardRef<HTMLElement, SectionProps>((props, ref) => {
   return (
     <SectionWrapper as={component} ref={ref} variant={variant} {...restProps}>
       <Container maxW={width}>
-        <Background variant={variant} bgColor={bgColor}>
-          <TopContent txtColor={txtColor}>
-            {caption && <Caption color={captionColor}>{caption}</Caption>}
+        <Background variant={variant} bgColor={options.bgColor}>
+          <TopContent txtColor={options.txtColor}>
+            {caption && (
+              <Caption color={options.captionColor}>{caption}</Caption>
+            )}
             {title && (
               <Heading
-                color={titleColor || colorScheme}
-                gradiant={gradiant ? 1 : 0}
+                color={options.titleColor || colorScheme}
+                gradiant={options.gradiant ? 1 : 0}
                 as='h2'>
                 {title}
               </Heading>
             )}
             {subTitle && (
-              <SubHeading top={top ? 1 : 0} {...subTitleProps}>
+              <SubHeading top={customTop ? 1 : 0} {...subTitleProps}>
                 {subTitle}
               </SubHeading>
             )}
-            {top && <CustomTop>{top}</CustomTop>}
+            {customTop && <CustomTop>{customTop}</CustomTop>}
           </TopContent>
           {children && (
             <SectionContent wide={wideContent} {...contentPorps}>
               {children}
             </SectionContent>
           )}
-          {bottom && (
-            <BottomContent iscontent={children ? 1 : 0}>{bottom}</BottomContent>
+          {customBottom && (
+            <BottomContent iscontent={children ? 1 : 0}>
+              {customBottom}
+            </BottomContent>
           )}
         </Background>
       </Container>
@@ -131,12 +129,14 @@ const Section = React.forwardRef<HTMLElement, SectionProps>((props, ref) => {
 Section.defaultProps = {
   component: `section`,
   variant: `transparent`,
-  bgColor: colors.background.lightGray,
-  txtColor: colors.background.dark,
-  captionColor: null,
-  titleColor: null,
-  gradiant: false,
   colorScheme: colors.text.dark,
+  options: {
+    bgColor: colors.background.lightGray,
+    txtColor: colors.background.dark,
+    captionColor: null,
+    titleColor: null,
+    gradiant: false,
+  },
 };
 
 export default Section;

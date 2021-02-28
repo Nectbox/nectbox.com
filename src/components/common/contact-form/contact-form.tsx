@@ -35,8 +35,8 @@ interface FormValues {
   acceptedDataCollection: boolean;
 }
 
-interface FieldProps<Name extends keyof FormValues> {
-  field: FieldInputProps<FormValues[Name]>;
+interface FieldProps<V extends keyof FormValues> {
+  field: FieldInputProps<FormValues[V]>;
   form: FormikState<FormValues>;
 }
 
