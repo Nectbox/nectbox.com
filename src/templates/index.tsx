@@ -1,46 +1,36 @@
-
 import * as React from 'react';
 import { PageProps, graphql, useStaticQuery, Link } from 'gatsby';
-import { DefaultLayout } from '../components';
-import { renderRichText } from 'gatsby-source-contentful/rich-text';
-import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types';
-
-import Highlight, { defaultProps } from "prism-react-renderer";
+import { DefaultLayout, Post } from '../components';
 import {
   ContentfulRichTextGatsbyReference,
   RenderRichTextData,
-} from "gatsby-source-contentful/rich-text"
+} from 'gatsby-source-contentful/rich-text';
 import { FluidObject } from 'gatsby-image';
-import BlogBody from '../components/blog-body';
-
 
 type TemplateProps = {
   data: {
     blog: {
-      id: string
-      title: string
-      slug: string
-      date: string
-      post: RenderRichTextData<ContentfulRichTextGatsbyReference>
+      id: string;
+      title: string;
+      slug: string;
+      date: string;
+      post: RenderRichTextData<ContentfulRichTextGatsbyReference>;
       blogImage: {
-        fluid: FluidObject
-      }[]
-    }
-  }
-}
+        fluid: FluidObject;
+      }[];
+    };
+  };
+};
 
-const BlogTemplate = ({ data: {blog} } : TemplateProps) => {
-  console.log(blog);
+const BlogTemplate = ({ data: { blog } }: TemplateProps) => {
   return (
     <DefaultLayout>
-      <BlogBody content={blog.post}/>
+      <Post content={blog.post} />
     </DefaultLayout>
-  )
+  );
 };
 
 export default BlogTemplate;
-
-
 
 export const query = graphql`
   query($slug: String!) {

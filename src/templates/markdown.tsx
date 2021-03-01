@@ -39,8 +39,6 @@ export const TestingCode = (text, code) => (
   </Highlight>
 );
 
-///! adding numbers
-
 export const Line = () => <div style={{ display: 'table-row' }}> </div>;
 export const LineNo = () => (
   <span

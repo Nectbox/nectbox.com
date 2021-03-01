@@ -16,28 +16,19 @@ interface Post {
   };
 }
 
-interface Props {
+interface CardProps {
   data: Post;
 }
-const BlogCard: React.FC<Props> = ({ data }) => {
+
+const Card: React.FC<CardProps> = ({ data }) => {
   console.log(data);
   return (
     <div style={{ display: 'flex', flexDirection: 'column', padding: '1rem' }}>
       <h1>{data.node.title}</h1>
       <p>{data.node.description}</p>
-      {/* <Img fluid={data.node.blogImage.fluid}  style={{ maxWidth: "500px", margin: "5% auto" }}/> */}
-      <Link
-        style={{
-          padding: '1rem',
-          border: '2px solid black',
-          width: 'fit-content',
-          background: '#2005',
-        }}
-        to={`/blog/${data.node.slug}`}>
-        click me
-      </Link>
+      <Link to={`/blog/${data.node.slug}`}>click me</Link>
     </div>
   );
 };
 
-export default BlogCard;
+export default Card;
