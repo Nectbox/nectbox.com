@@ -32,9 +32,6 @@ const SEO = (props: SeoProps) => {
   const metaDescription = description || site.siteMetadata.description;
   const defaultTitle = site.siteMetadata.title;
 
-  console.log(type);
-  console.log(pathname);
-
   return (
     <Helmet
       htmlAttributes={{

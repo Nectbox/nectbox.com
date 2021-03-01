@@ -66,7 +66,7 @@ const PhasesPage = ({ location }: PageProps) => {
         caption={recommandSection.caption}
         title={recommandSection.title}
         subTitle={recommandSection.subTitle}
-        bottom={
+        customBottom={
           <CallToAction
             content={recommandSection.ctaInfo.content}
             ctaName={recommandSection.ctaInfo.ctaName}

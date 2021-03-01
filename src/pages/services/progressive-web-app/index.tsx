@@ -102,7 +102,7 @@ export default function ProgressiveWebAppPage({ location }: PageProps) {
         caption={infoData.caption}
         title={infoData.title}
         subTitle={infoData.subTitle}
-        bottom={
+        customBottom={
           <CallToAction
             content={infoData.more.content}
             ctaName={infoData.more.ctaName}
@@ -126,7 +126,7 @@ export default function ProgressiveWebAppPage({ location }: PageProps) {
       <Section
         caption={recommandSection.caption}
         title={recommandSection.title}
-        bottom={
+        customBottom={
           <CallToAction
             content={recommandSection.ctaInfo.content}
             ctaName={recommandSection.ctaInfo.ctaName}

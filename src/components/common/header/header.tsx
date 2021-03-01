@@ -3,17 +3,20 @@ import Link from '../link';
 import Button from '../button';
 import Image from 'gatsby-image';
 import { graphql, useStaticQuery } from 'gatsby';
+import { Box, useDisclosure } from '@chakra-ui/react';
+import { HamburgerIcon } from '@chakra-ui/icons';
 import { Menu, MenuItem } from '../menu';
 import { width } from '../../../styles/theme';
-import { Box } from '@chakra-ui/react';
 import { FixedImageProps, HeaderModule } from '../../../types';
 import {
   HeaderSection,
   Wrapper,
   Navigation,
+  BurgerMenu,
   NavList,
   NavItem,
 } from './header.styles';
+import MobileNavigation from './mobile-navigation';
 
 interface HeaderProps {
   data: HeaderModule;
@@ -37,6 +40,7 @@ const Header: React.FC<HeaderProps> = ({ data, heroCtaRef }) => {
     }
   `);
 
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const [showButton, setShowButton] = React.useState<boolean>(false);
 
   React.useEffect(() => {
@@ -104,11 +108,26 @@ const Header: React.FC<HeaderProps> = ({ data, heroCtaRef }) => {
           </Navigation>
         </Box>
 
-        {showButton && (
-          <Button>
-            <Link to={`/${data.ctaLink}`}>{data.ctaTitle}</Link>{' '}
-          </Button>
-        )}
+        <Box display='flex' alignItems='center'>
+          <BurgerMenu
+            spacing={showButton ? 1 : 0}
+            size='lg'
+            variant='unstyled'
+            aria-label='Mobile menu navigation'
+            icon={<HamburgerIcon w={12} h={12} />}
+            onClick={onOpen}
+          />
+          <MobileNavigation
+            data={data.navigation.menues}
+            isOpen={isOpen}
+            onClose={onClose}
+          />
+          {showButton && (
+            <Button className='consultation'>
+              <Link to={`/${data.ctaLink}`}>{data.ctaTitle}</Link>{' '}
+            </Button>
+          )}
+        </Box>
       </Wrapper>
     </HeaderSection>
   );

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Section } from '../../common';
-import { Center } from '@chakra-ui/react';
 import {
   ContentWrapper,
   TechList,
