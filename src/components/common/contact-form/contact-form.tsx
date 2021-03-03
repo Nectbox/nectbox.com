@@ -30,7 +30,7 @@ interface FormValues {
   name: string;
   email: string;
   company: string;
-  budget: number;
+  budget: string;
   description: string;
   acceptedDataCollection: boolean;
 }
@@ -51,7 +51,7 @@ const ContactFormErrorSchema = Yup.object().shape({
   company: Yup.string()
     .min(3, 'Company name must be at least 3 characters')
     .max(54, 'Company name  must be 54 characters or less'),
-  budget: Yup.number().min(0, 'You cannot go below "0"'),
+  budget: Yup.string().min(0, 'You cannot go below "0"'),
   description: Yup.string()
     .min(12, 'Must be at least 12 characters')
     .max(256, 'Must be 256 characters or less')
@@ -74,7 +74,7 @@ const ContactForm = () => {
     name: '',
     email: '',
     company: '',
-    budget: 0,
+    budget: '0',
     description: '',
     acceptedDataCollection: true,
   };
@@ -99,10 +99,11 @@ const ContactForm = () => {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: encode({
-            'form-name': 'Contact Form',
+            'form-name': 'Nectbox Form',
             ...values,
           }),
         }).catch((error) => console.error(error));
+
         setSubmitting(false);
         resetForm();
 
@@ -115,11 +116,11 @@ const ContactForm = () => {
       }}>
       {(props) => (
         <Form
-          name='Contact Form'
+          name='Nectbox Form'
           method='POST'
           data-netlify='true'
           data-netlify-honeypot='bot-field'>
-          <input type='hidden' name='form-name' value='Contact Form' />
+          <input type='hidden' name='form-name' value='Nectbox Form' />
           <Field name='name'>
             {({ field, form }: FieldProps<'name'>) => (
               <FormGroup isInvalid={form.errors.name && form.touched.name}>
@@ -155,13 +156,9 @@ const ContactForm = () => {
                 <NumberInput
                   id='budget'
                   min={0}
-                  defaultValue={field.value}
+                  value={field.value}
                   allowMouseWheel>
                   <NumberField {...field} />
-                  <NumberInputStepper>
-                    <NumberIncrementStepper />
-                    <NumberDecrementStepper />
-                  </NumberInputStepper>
                 </NumberInput>
                 <Error>{form.errors.budget}</Error>
               </FormGroup>
