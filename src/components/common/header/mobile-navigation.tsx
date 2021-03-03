@@ -1,17 +1,23 @@
 import * as React from 'react';
+import Link from '../link';
 import {
   Accordion,
-  AccordionButton,
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
-  Box,
   Drawer,
-  DrawerBody,
   DrawerContent,
   DrawerOverlay,
 } from '@chakra-ui/react';
-import { CloseButton } from './header.styles';
+import {
+  CloseButton,
+  Body,
+  AccordtionTitle,
+  AccordionButton,
+  Title,
+  Panel,
+  PanelItem,
+} from './header.styles';
 import { NavigationMenu } from '../../../types';
 
 interface MobileNavigationProps {
@@ -30,22 +36,39 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({
       <DrawerOverlay>
         <DrawerContent>
           <CloseButton />
-          <DrawerBody>
+          <Body>
             <Accordion allowToggle>
-              {data.map((menu) => (
-                <AccordionItem key={menu.id}>
+              <AccordionItem my={5} position='relative'>
+                <AccordionButton>
+                  <AccordtionTitle>01.</AccordtionTitle>
+                </AccordionButton>
+                <Link to='/'>
+                  <Title>Home</Title>
+                </Link>
+              </AccordionItem>
+              {data.map((menu, idx) => (
+                <AccordionItem key={menu.id} my={5} position='relative'>
                   <AccordionButton>
-                    <Box flex='1' textAlign='left'>
-                      {menu.title}
-                    </Box>
-                    <AccordionIcon />
+                    <AccordtionTitle>0{idx + 2}.</AccordtionTitle>
+                    {menu.megaMenu && <AccordionIcon h={12} w={12} />}
                   </AccordionButton>
+                  <Link to={`/${menu.slug}`}>
+                    <Title>{menu.title}</Title>
+                  </Link>
 
-                  <AccordionPanel pb={4}>hello</AccordionPanel>
+                  {menu.megaMenu && (
+                    <Panel>
+                      {menu.megaMenu.menuItems.map((item) => (
+                        <Link to={`/${item.slug}`} key={item.id}>
+                          <PanelItem>{item.heading}</PanelItem>
+                        </Link>
+                      ))}
+                    </Panel>
+                  )}
                 </AccordionItem>
               ))}
             </Accordion>
-          </DrawerBody>
+          </Body>
         </DrawerContent>
       </DrawerOverlay>
     </Drawer>

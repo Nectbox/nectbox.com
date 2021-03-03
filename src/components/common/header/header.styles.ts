@@ -5,6 +5,11 @@ import {
   Container,
   DrawerCloseButton,
   IconButton,
+  DrawerBody,
+  Text,
+  AccordionButton as ChakraAccordionButton,
+  AccordionPanel,
+  Flex,
 } from '@chakra-ui/react';
 
 export const HeaderSection = styled(Stack)`
@@ -90,7 +95,7 @@ export const NavItem = styled.li`
 
 export const CloseButton = styled(DrawerCloseButton)`
   box-shadow: none !important;
-  right: 1.55rem;
+  right: 1.6rem;
   top: 2.4rem;
 
   svg {
@@ -100,5 +105,68 @@ export const CloseButton = styled(DrawerCloseButton)`
 
   :hover {
     background: none;
+  }
+`;
+
+export const Body = styled(DrawerBody)`
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+`;
+
+export const AccordtionTitle = styled(Text)`
+  flex: 1;
+  text-align: left;
+  font-size: 2.9rem;
+
+  @media (min-width: ${breakpoints.xs}) {
+    font-size: 3.45rem;
+  }
+`;
+
+export const Panel = styled(AccordionPanel)`
+  display: flex;
+  flex-flow: column;
+  padding-left: 2.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
+  @media (min-width: ${breakpoints.xs}) {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+`;
+
+export const PanelItem = styled(Flex)`
+  font-size: 2.2rem;
+  padding: 0.35rem 1rem;
+
+  @media (min-width: ${breakpoints.xs}) {
+    font-size: 2.7rem;
+  }
+
+  &:hover {
+    color: ${colors.accent.purple};
+  }
+`;
+
+export const AccordionButton = styled(ChakraAccordionButton)`
+  box-shadow: none !important;
+`;
+
+export const Title = styled(AccordtionTitle)`
+  position: absolute;
+  top: 0;
+  left: 4.25rem;
+  padding: 0.5rem 2.5rem;
+  transform: translate3d(0, -0.1rem, 0);
+  z-index: 1000;
+
+  @media (min-width: ${breakpoints.xs}) {
+    left: 6rem;
+  }
+
+  &:hover {
+    color: ${colors.accent.purple};
   }
 `;
