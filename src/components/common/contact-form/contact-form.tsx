@@ -79,19 +79,14 @@ const ContactForm = () => {
     acceptedDataCollection: true,
   };
 
-  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-
   return (
     <Formik
       initialValues={initialFormValues}
       validationSchema={ContactFormErrorSchema}
-      onSubmit={async (
+      onSubmit={(
         values: FormValues,
         { setSubmitting, resetForm }: FormikHelpers<FormValues>
       ) => {
-        await sleep(2000);
-        console.log(values);
-
         setSubmitting(false);
         resetForm();
 
@@ -103,7 +98,8 @@ const ContactForm = () => {
         });
       }}>
       {(props) => (
-        <Form>
+        <Form name='Contact Form' method='POST' data-netlify='true'>
+          <input type='hidden' name='form-name' value='Contact Form' />
           <Field name='name'>
             {({ field, form }: FieldProps<'name'>) => (
               <FormGroup isInvalid={form.errors.name && form.touched.name}>
