@@ -79,14 +79,30 @@ const ContactForm = () => {
     acceptedDataCollection: true,
   };
 
+  const encode = (data: Record<string, any>) => {
+    return Object.keys(data)
+      .map(
+        (key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key])
+      )
+      .join('&');
+  };
+
   return (
     <Formik
       initialValues={initialFormValues}
       validationSchema={ContactFormErrorSchema}
-      onSubmit={(
+      onSubmit={async (
         values: FormValues,
         { setSubmitting, resetForm }: FormikHelpers<FormValues>
       ) => {
+        await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: encode({
+            'form-name': 'Contact Form',
+            ...values,
+          }),
+        }).catch((error) => console.error(error));
         setSubmitting(false);
         resetForm();
 
@@ -98,7 +114,11 @@ const ContactForm = () => {
         });
       }}>
       {(props) => (
-        <Form name='Contact Form' method='POST' data-netlify='true'>
+        <Form
+          name='Contact Form'
+          method='POST'
+          data-netlify='true'
+          data-netlify-honeypot='bot-field'>
           <input type='hidden' name='form-name' value='Contact Form' />
           <Field name='name'>
             {({ field, form }: FieldProps<'name'>) => (
