@@ -1,67 +1,47 @@
-import Highlight, { defaultProps } from 'prism-react-renderer';
-import React from 'react';
+import styled from '@emotion/styled';
+import Highlight, { defaultProps } from "prism-react-renderer";
+import React from "react";
 
-type NodeProps = {
-  children: React.ReactNode;
-};
+const Pre = styled.pre`
+  text-align: left;
+  margin: 1em 0;
+  padding: 0.5em;
+  overflow: scroll;
+`;
 
-export const Bold = ({ children }: NodeProps) => <strong>{children}</strong>;
+const Line = styled.div`
+  display: table-row;
+`;
 
-export const Text = ({ children }: NodeProps) => (
-  <p style={{ fontSize: '20px' }}>{children}</p>
-);
+const LineNo = styled.span`
+  display: table-cell;
+  text-align: right;
+  padding-right: 1em;
+  user-select: none;
+  opacity: 0.5;
+`;
 
-export const Heading1 = ({ children }: NodeProps) => (
-  <h1 style={{ fontSize: '35px' }}>{children}</h1>
-);
+const LineContent = styled.span`
+  display: table-cell;
+`;
 
-// export const Code = ({ children }: NodeProps) => {
-//   console.log({ children });
-//   return (
-//     <code style={{ color: "red", fontSize: "40px" }}>{children}</code>
-
-//   )
-// }
-
-export const TestingCode = (text, code) => (
-  <Highlight {...defaultProps} code={text} language='jsx'>
+const Code = ({ codeString, language, theme, ...props }) => (
+  <Highlight  {...defaultProps} theme={theme} code={codeString} language={language}>
     {({ className, style, tokens, getLineProps, getTokenProps }) => (
-      <pre className={className} style={style}>
+      <Pre className={className} style={style}>
         {tokens.map((line, i) => (
-          <div {...getLineProps({ line, key: i })}>
-            {line.map((token, key) => (
-              <span {...getTokenProps({ token, key })} />
-            ))}
-          </div>
+          <Line key={i} {...getLineProps({ line, key: i })}>
+            <LineNo>{i + 1}</LineNo>
+            <LineContent>
+              {line.map((token, key) => (
+                <span key={key} {...getTokenProps({ token, key })} />
+              ))}
+            </LineContent>
+          </Line>
         ))}
-      </pre>
+      </Pre>
     )}
   </Highlight>
 );
 
-export const Line = () => <div style={{ display: 'table-row' }}> </div>;
-export const LineNo = () => (
-  <span
-    style={{
-      display: 'table-cell',
-      textAlign: 'right',
-      paddingRight: '1em',
-      userSelect: 'none',
-      opacity: '0.5',
-    }}></span>
-);
-
-export const Pre = () => (
-  <pre
-    style={{
-      textAlign: 'left',
-      margin: '1em,0',
-      padding: '0.5em',
-      overflow: 'scroll',
-      border: '2px solid black',
-    }}></pre>
-);
-
-export const LineContent = () => (
-  <span style={{ display: 'table-cell' }}></span>
-);
+export default Code
