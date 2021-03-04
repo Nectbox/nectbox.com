@@ -1,7 +1,7 @@
 import { MDXProvider } from "@mdx-js/react";
 import theme from "prism-react-renderer/themes/dracula";
 import React from "react";
-import Code from "./templates/markdown";
+import Code from "./markdown";
 
 
 const components = {
