@@ -10,8 +10,11 @@ export default ({data}) => {
   console.log(data);
   return (
     <DefaultLayout>
+      
       <h1>{frontmatter.title}</h1>
       <h1>{frontmatter.date}</h1>
+      <p>{frontmatter.description}</p>
+      <p>{frontmatter.author}</p>
       <MDXRenderer>{body}</MDXRenderer>
 
     </DefaultLayout>
@@ -23,7 +26,10 @@ export const query = graphql`
   query PostBySlug($slug: String!){
     mdx(slug: {eq: $slug}) {
       frontmatter {
-        title
+        title,
+        date,
+        description
+        author
       }
       body
     }
