@@ -5,9 +5,7 @@ import { DefaultLayout } from '../components';
 
 
 export default ({data}) => {
-  console.log(data.mdx);
   const { frontmatter, body} =data.mdx
-  console.log(data);
   return (
     <DefaultLayout>
       
