@@ -1,29 +1,5 @@
-import styled from '@emotion/styled';
 import Highlight, { defaultProps } from "prism-react-renderer";
-import React from "react";
-
-const Pre = styled.pre`
-  text-align: left;
-  margin: 1em 0;
-  padding: 0.5em;
-  overflow: scroll;
-`;
-
-const Line = styled.div`
-  display: table-row;
-`;
-
-const LineNo = styled.span`
-  display: table-cell;
-  text-align: right;
-  padding-right: 1em;
-  user-select: none;
-  opacity: 0.5;
-`;
-
-const LineContent = styled.span`
-  display: table-cell;
-`;
+import { Line, LineContent, LineNo, Pre } from "./code.styles";
 
 const Code = ({ codeString, language, theme, ...props }) => (
   <Highlight  {...defaultProps} theme={theme} code={codeString} language={language}>
