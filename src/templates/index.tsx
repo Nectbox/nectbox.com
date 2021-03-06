@@ -1,53 +1,36 @@
-import * as React from 'react';
-import { PageProps, graphql, useStaticQuery, Link } from 'gatsby';
-import { DefaultLayout, Post } from '../components';
-import {
-  ContentfulRichTextGatsbyReference,
-  RenderRichTextData,
-} from 'gatsby-source-contentful/rich-text';
-import { FluidObject } from 'gatsby-image';
+import { graphql } from 'gatsby';
+import { MDXRenderer } from "gatsby-plugin-mdx";
+import React from "react";
+import { DefaultLayout } from '../components';
 
-type TemplateProps = {
-  data: {
-    blog: {
-      id: string;
-      title: string;
-      slug: string;
-      date: string;
-      post: RenderRichTextData<ContentfulRichTextGatsbyReference>;
-      blogImage: {
-        fluid: FluidObject;
-      }[];
-    };
-  };
-};
 
-const BlogTemplate = ({ data: { blog } }: TemplateProps) => {
+export default ({data}) => {
+  const { frontmatter, body} =data.mdx
   return (
     <DefaultLayout>
-      <Post content={blog.post} />
-    </DefaultLayout>
-  );
-};
+      
+      <h1>{frontmatter.title}</h1>
+      <h1>{frontmatter.date}</h1>
+      <p>{frontmatter.description}</p>
+      <p>{frontmatter.author}</p>
+      <MDXRenderer>{body}</MDXRenderer>
 
-export default BlogTemplate;
+    </DefaultLayout>
+  )
+}
+
 
 export const query = graphql`
-  query($slug: String!) {
-    blog: contentfulBlogPost(slug: { eq: $slug }) {
-      slug
-      title
-      description
-      id
-      createdAt(formatString: "MMM D YYYY")
-      blogImage {
-        fluid(quality: 100) {
-          ...GatsbyContentfulFluid
-        }
+  query PostBySlug($slug: String!){
+    mdx(slug: {eq: $slug}) {
+      frontmatter {
+        title,
+        date,
+        description
+        author
       }
-      post {
-        raw
-      }
+      body
     }
   }
 `;
+

@@ -32,6 +32,7 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sitemap',
     'gatsby-plugin-offline',
+
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
@@ -47,7 +48,19 @@ module.exports = {
       },
       __key: 'images',
     },
-
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        extensions: [`.mdx`, `.md`],
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `posts`,
+        path: `${__dirname}/content`,
+      },
+    },
     {
       resolve: `gatsby-transformer-remark`,
       options: {

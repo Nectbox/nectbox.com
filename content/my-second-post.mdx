@@ -1,0 +1,127 @@
+---
+title: 'my second  post'
+description: Utilities for controlling how a background image behaves when scrolling.
+slug: my-second-post
+date: 2020-20-21
+excerpt: This is a test to see if this is working second post
+---
+
+
+## IS THIS WORKING H2
+First, let's create a file at `src/count-context.js` and we'll create our
+context there:
+
+`console.log("hello inline code!!!") `
+
+```jsx
+// src/count-context.js
+import * as React from 'react'
+
+const CountStateContext = React.createContext()
+const CountDispatchContext = React.createContext()
+```
+
+First off, I don't have an initial value for the `CountStateContext`. If I
+wanted an initial value, I would call `React.createContext({count: 0})`. But I
+don't include a default value and that's intentional. The `defaultValue` is only
+useful in a situation like this:
+
+```jsx
+function CountDisplay() {
+  const {count} = React.useContext(CountStateContext)
+  return <div>{count}</div>
+}
+
+ReactDOM.render(<CountDisplay />, document.getElementById('⚛️'))
+```
+
+Because we don't have a default value for our `CountStateContext`, we'll get an
+error on the highlighted line where we're destructing the return value of
+`useContext`. This is because our default value is `undefined` and you cannot
+destructure `undefined`.
+
+None of us likes runtime errors, so your knee-jerk reaction may be to add a
+default value to avoid the runtime error. However, what use would the context be
+if it didn't have an actual value? If it's just using the default value that's
+been provided, then it can't really do much good. 99% of the time that you're
+going to be creating and using context in your application, you want your
+context consumers (those using `useContext`) to be rendered within a provider
+which can provide a useful value.
+
+> Note, there are situations where default values are useful, but most of the
+> time they're not necessary or useful.
+
+[The React docs](https://reactjs.org/docs/context.html#reactcreatecontext)
+suggest that providing a default value "can be helpful in testing components in
+isolation without wrapping them." While it's true that it allows you to do this,
+I disagree that it's better than wrapping your components with the necessary
+context. Remember that every time you do something in your test that you don't
+do in your application, you reduce the amount of confidence that test can give
+you. [There are reasons to do this](/blog/the-merits-of-mocking), but that's not
+one of them.
+
+> Note: If you're using Flow or TypeScript, not providing a default value can be
+> really annoying for people who are using `React.useContext`, but I'll show you
+> how to avoid that problem altogether below. Keep reading!
+
+**What's this `CountDispatchContext` thing all about?** I've been playing around
+with context for a while, and talking with friends at Facebook who have been
+playing around with it for longer and I can tell you that the simplest way to
+avoid problems with context (especially when you start calling `dispatch` in
+effects) is to split up the state and dispatch in context. Stay with me here!
+
+## The Custom Provider Component
+
+Ok, let's continue. For this context module to be useful _at all_ we need to use
+the Provider and expose a component that provides a value. Our component will be
+used like this:
+
+```jsx 
+function App() {
+  return (
+    <CountProvider>
+      <CountDisplay />
+      <Counter />
+    </CountProvider>
+  )
+}
+
+ReactDOM.render(<App />, document.getElementById('⚛️'))
+```
+
+So let's make a component that can be used like that:
+
+```jsx
+// src/count-context.js
+import * as React from 'react'
+
+const CountStateContext = React.createContext()
+const CountDispatchContext = React.createContext()
+
+function countReducer(state, action) {
+  switch (action.type) {
+    case 'increment': {
+      return {count: state.count + 1}
+    }
+    case 'decrement': {
+      return {count: state.count - 1}
+    }
+    default: {
+      throw new Error(`Unhandled action type: ${action.type}`)
+    }
+  }
+}
+
+function CountProvider({children}) {
+  const [state, dispatch] = React.useReducer(countReducer, {count: 0})
+  return (
+    <CountStateContext.Provider value={state}>
+      <CountDispatchContext.Provider value={dispatch}>
+        {children}
+      </CountDispatchContext.Provider>
+    </CountStateContext.Provider>
+  )
+}
+
+export {CountProvider}
+```
