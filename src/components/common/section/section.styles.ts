@@ -2,9 +2,9 @@ import styled from '@emotion/styled';
 import theme from '../../../styles/theme';
 import { css } from '@emotion/react';
 import { Flex, Text } from '@chakra-ui/react';
-import { BackgroundOptions, ColorOptions } from './section';
+import { ColorOptions, SectionProps } from './section';
 
-export const SectionWrapper = styled.section<BackgroundOptions>`
+export const SectionWrapper = styled.section<SectionProps>`
   padding: 7.5rem 0;
 
   ${(props) =>
@@ -12,9 +12,15 @@ export const SectionWrapper = styled.section<BackgroundOptions>`
     css`
       padding: 3.75rem 0;
     `}
+
+  ${(props) =>
+    props.paddingTop &&
+    css`
+      padding-top: ${props.paddingTop};
+    `};
 `;
 
-export const Background = styled.div<BackgroundOptions>`
+export const Background = styled.div<SectionProps & ColorOptions>`
   background: transparent;
 
   ${(props) =>

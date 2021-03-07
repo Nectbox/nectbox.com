@@ -25,30 +25,65 @@ export interface SiteMetadeta {
   };
 }
 
+export interface AllMdxBlogPostData {
+  allMdx: {
+    edges: Array<{
+      node: {
+        id: string;
+        frontmatter: FormatterData;
+        fields: {
+          slug: string;
+        };
+      };
+    }>;
+  };
+}
+
+export interface MdxBlogPostData {
+  mdx: {
+    body: string;
+    frontmatter: FormatterData;
+  };
+}
+
+export interface FormatterData {
+  author: string;
+  description: string;
+  excerpt: string;
+  slug: string;
+  title: string;
+  htmlTitle: string;
+  date: string;
+  id: string;
+  keywords: string[];
+  category: string;
+  featuredImage: FluidImageProps;
+}
+
 // Making interfaces to use node and generate slug/pages
 export interface PageInput {
-   path: string
-   component: string
-   layout?: string
-   context: any
+  path: string;
+  component: string;
+  layout?: string;
+  context: any;
 }
 
-interface BoundActionCreators {
-  createPage: (page: PageInput) => void
-  deletePage: (page: PageInput ) => void
-  createRedirect: (
-    opts: {
-      fromPath: string
-      isPermanent: boolean
-      redirectBrowser?: boolean
-      toPath: string
-    }
-  ) => void
+export interface BoundActionCreators {
+  createPage: (page: PageInput) => void;
+  deletePage: (page: PageInput) => void;
+  createRedirect: (opts: {
+    fromPath: string;
+    isPermanent: boolean;
+    redirectBrowser?: boolean;
+    toPath: string;
+  }) => void;
 }
 
-export type GatsbyCreatePages = (
-  fns: {graphql: any; boundActionCreators: BoundActionCreators}
-) => void
+export type GatsbyCreatePages = (fns: {
+  graphql: any;
+  boundActionCreators: BoundActionCreators;
+}) => void;
 
+export type Component = React.ReactNode | React.ElementType<any> | string;
 
 export type ValueOf<T> = T extends any[] ? T[number] : T[keyof T];

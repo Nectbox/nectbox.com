@@ -1,10 +1,12 @@
 ---
-title: 'my first post TITLE'
+author: andrei author
+title: my first post
+featuredImage: ../images/logo.png
 description: this is my description Utilities for controlling how a background image behaves when scrolling.
 slug: my-first-post
 date: 2020-25-21
 excerpt: This is a test to see if this is working
-author: andrei author
+category: case-studies
 keywords:
   - javascript
   - react
@@ -12,11 +14,8 @@ id: 1
 author-image: image goes here
 ---
 
-
-
-
-
 ## IS THIS WORKING H2
+
 First, let's create a file at `src/count-context.js` and we'll create our
 context there:
 
@@ -24,10 +23,10 @@ context there:
 
 ```jsx
 // src/count-context.js
-import * as React from 'react'
+import * as React from 'react';
 
-const CountStateContext = React.createContext()
-const CountDispatchContext = React.createContext()
+const CountStateContext = React.createContext();
+const CountDispatchContext = React.createContext();
 ```
 
 First off, I don't have an initial value for the `CountStateContext`. If I
@@ -37,11 +36,11 @@ useful in a situation like this:
 
 ```jsx
 function CountDisplay() {
-  const {count} = React.useContext(CountStateContext)
-  return <div>{count}</div>
+  const { count } = React.useContext(CountStateContext);
+  return <div>{count}</div>;
 }
 
-ReactDOM.render(<CountDisplay />, document.getElementById('⚛️'))
+ReactDOM.render(<CountDisplay />, document.getElementById('⚛️'));
 ```
 
 Because we don't have a default value for our `CountStateContext`, we'll get an
@@ -85,52 +84,52 @@ Ok, let's continue. For this context module to be useful _at all_ we need to use
 the Provider and expose a component that provides a value. Our component will be
 used like this:
 
-```jsx 
+```jsx
 function App() {
   return (
     <CountProvider>
       <CountDisplay />
       <Counter />
     </CountProvider>
-  )
+  );
 }
 
-ReactDOM.render(<App />, document.getElementById('⚛️'))
+ReactDOM.render(<App />, document.getElementById('⚛️'));
 ```
 
 So let's make a component that can be used like that:
 
 ```jsx
 // src/count-context.js
-import * as React from 'react'
+import * as React from 'react';
 
-const CountStateContext = React.createContext()
-const CountDispatchContext = React.createContext()
+const CountStateContext = React.createContext();
+const CountDispatchContext = React.createContext();
 
 function countReducer(state, action) {
   switch (action.type) {
     case 'increment': {
-      return {count: state.count + 1}
+      return { count: state.count + 1 };
     }
     case 'decrement': {
-      return {count: state.count - 1}
+      return { count: state.count - 1 };
     }
     default: {
-      throw new Error(`Unhandled action type: ${action.type}`)
+      throw new Error(`Unhandled action type: ${action.type}`);
     }
   }
 }
 
-function CountProvider({children}) {
-  const [state, dispatch] = React.useReducer(countReducer, {count: 0})
+function CountProvider({ children }) {
+  const [state, dispatch] = React.useReducer(countReducer, { count: 0 });
   return (
     <CountStateContext.Provider value={state}>
       <CountDispatchContext.Provider value={dispatch}>
         {children}
       </CountDispatchContext.Provider>
     </CountStateContext.Provider>
-  )
+  );
 }
 
-export {CountProvider}
+export { CountProvider };
 ```

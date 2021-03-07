@@ -27,14 +27,15 @@ export default css`
     overscroll-behavior: none;
     overflow-x: hidden;
     overflow-y: auto;
-    background: ${colors.background.light};
+    background: ${colors.background.light} !important;
   }
 
   a {
     text-decoration: none;
     color: inherit;
   }
-  p code{
+
+  p code {
     color: red;
   }
 `;

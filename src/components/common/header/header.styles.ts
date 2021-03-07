@@ -17,9 +17,13 @@ export const HeaderSection = styled(Stack)`
   top: 0;
   left: 0;
   width: 100%;
-  height: 8rem;
   background: ${colors.background.light};
   z-index: 10;
+`;
+
+export const MainHeader = styled(Stack)`
+  height: 8rem;
+  width: 100%;
 
   & div div > a {
     display: flex;

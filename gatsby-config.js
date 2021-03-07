@@ -44,7 +44,7 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'images',
-        path: './src/images/',
+        path: `${__dirname}/src/images/`,
       },
       __key: 'images',
     },
@@ -52,13 +52,24 @@ module.exports = {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [`.mdx`, `.md`],
+        defaultLayouts: {
+          default: require.resolve('./src/components/layouts/default.tsx'),
+        },
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 800,
+            },
+          },
+        ],
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `posts`,
-        path: `${__dirname}/content`,
+        path: `${__dirname}/src/posts/`,
       },
     },
     {
@@ -69,10 +80,10 @@ module.exports = {
             resolve: `gatsby-remark-images-contentful`,
             options: {
               maxWidth: 750,
-            }
-          }
-        ]
-      }
+            },
+          },
+        ],
+      },
     },
 
     {

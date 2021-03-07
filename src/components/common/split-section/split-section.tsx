@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Button, Link } from '../../common';
-import { Container, Flex } from '@chakra-ui/react';
+import { Container, Flex, SpaceProps } from '@chakra-ui/react';
 import {
   SplitSectionWrapper,
   Heading,
@@ -9,13 +9,13 @@ import {
   SubHeading,
 } from './split-section.styles';
 import { width, gradients } from '../../../styles/theme';
+import { Component } from '../../../types';
 
-export type Component = React.ReactNode | React.ElementType<any> | string;
-
-export interface SplitSectionProps {
+export interface SplitSectionProps extends SpaceProps {
   colorScheme?: string;
   caption?: string;
   title?: Component | string;
+  titleHTML?: string;
   subTitle?: string;
   leftPane?: Component;
   rightPane?: Component;
@@ -25,13 +25,15 @@ export interface SplitSectionProps {
   invert?: boolean;
   headingProps?: Record<string, unknown>;
   wide?: boolean;
+  customWidth?: string;
 }
 
-const SplitSection = React.forwardRef<HTMLElement, SplitSectionProps>(
+const SplitSection = React.forwardRef<HTMLDivElement, SplitSectionProps>(
   (props, ref) => {
     const {
       caption,
       title,
+      titleHTML,
       subTitle,
       leftPane,
       rightPane,
@@ -42,12 +44,13 @@ const SplitSection = React.forwardRef<HTMLElement, SplitSectionProps>(
       invert,
       wide,
       headingProps,
+      customWidth,
       ...restProps
     } = props;
 
     return (
-      <SplitSectionWrapper ref={ref} {...restProps}>
-        <Container maxW={width} p='0 1.6rem'>
+      <SplitSectionWrapper as='section' ref={ref} {...restProps}>
+        <Container maxW={customWidth || width} p='0 1.6rem'>
           <Content contentposition={invert ? 1 : 0} contentwide={wide ? 1 : 0}>
             <Flex className='left-pane'>
               {caption && <Caption>{caption}</Caption>}
@@ -55,6 +58,14 @@ const SplitSection = React.forwardRef<HTMLElement, SplitSectionProps>(
                 <Heading as='h1' scheme={colorScheme} {...headingProps}>
                   {title}
                 </Heading>
+              )}
+              {titleHTML && (
+                <Heading
+                  as='h1'
+                  dangerouslySetInnerHTML={{ __html: titleHTML }}
+                  scheme={colorScheme}
+                  {...headingProps}
+                />
               )}
               {subTitle && <SubHeading>{subTitle}</SubHeading>}
               <Flex className='button-wrapper'>
@@ -77,6 +88,8 @@ const SplitSection = React.forwardRef<HTMLElement, SplitSectionProps>(
 
 SplitSection.defaultProps = {
   colorScheme: gradients.purple,
+  customWidth: null,
+  titleHTML: null,
   invert: false,
   wide: false,
 };

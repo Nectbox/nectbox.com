@@ -1,11 +1,17 @@
 import styled from '@emotion/styled';
 import theme from '../../../styles/theme';
 import { css } from '@emotion/react';
-import { Flex, Text, Heading as CHeading } from '@chakra-ui/react';
+import { Flex, Text, Stack } from '@chakra-ui/react';
 
-export const SplitSectionWrapper = styled.section`
+export const SplitSectionWrapper = styled(Stack)`
   width: 100%;
   padding: 7.5rem 0;
+
+  ${(props) =>
+    props.paddingTop &&
+    css`
+      padding-top: ${props.paddingTop};
+    `};
 `;
 
 export const Content = styled(Flex)`
@@ -55,6 +61,10 @@ export const Content = styled(Flex)`
   }
 
   & > .right-pane {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     @media (min-width: ${theme.breakpoints.lg}) {
       flex: ${(props) => (props.contentwide ? '25%' : 1)};
 

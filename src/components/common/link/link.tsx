@@ -7,6 +7,7 @@ interface LinkProps {
   isExternal?: boolean;
   isMenu?: boolean;
   title?: string;
+  style?: any;
 }
 
 const Link: React.FC<LinkProps> = (props) => {

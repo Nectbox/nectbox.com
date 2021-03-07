@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Container } from '@chakra-ui/react';
+import { Container, SpaceProps } from '@chakra-ui/react';
 import {
   SectionWrapper,
   SectionContentWrapper,
@@ -12,8 +12,8 @@ import {
   CustomTop,
 } from './section.styles';
 import { width, colors } from '../../../styles/theme';
+import { Component } from '../../../types';
 
-export type Component = React.ReactNode | React.ElementType<any> | string;
 export interface SectionContentProps {
   wide?: boolean;
 }
@@ -36,7 +36,7 @@ export interface ColorOptions {
   bgColor?: string;
 }
 
-export interface SectionProps {
+export interface SectionProps extends SpaceProps {
   id?: string;
   component?: React.ElementType<any>;
   variant?: 'transparent' | 'background';
@@ -51,6 +51,7 @@ export interface SectionProps {
   customBottom?: Component;
   children?: Component;
   wideContent?: boolean;
+  customWidth?: string;
 }
 
 /**
@@ -83,13 +84,14 @@ const Section = React.forwardRef<HTMLElement, SectionProps>((props, ref) => {
     customTop,
     customBottom,
     wideContent,
+    customWidth,
     children,
     ...restProps
   } = props;
 
   return (
     <SectionWrapper as={component} ref={ref} variant={variant} {...restProps}>
-      <Container maxW={width}>
+      <Container maxW={customWidth || width}>
         <Background variant={variant} bgColor={options.bgColor}>
           <TopContent txtColor={options.txtColor}>
             {caption && (
@@ -130,6 +132,7 @@ Section.defaultProps = {
   component: `section`,
   variant: `transparent`,
   colorScheme: colors.text.dark,
+  customWidth: null,
   options: {
     bgColor: colors.background.lightGray,
     txtColor: colors.background.dark,

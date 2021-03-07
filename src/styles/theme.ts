@@ -1,6 +1,8 @@
 const theme = {
   dimensions: {
     width: '1380px',
+    blogWidth: '1180px',
+    postWidth: '980px',
   },
   colors: {
     background: {
@@ -85,6 +87,7 @@ const theme = {
 export type Theme = typeof theme;
 
 export const width = theme.dimensions.width;
+export const dimensions = theme.dimensions;
 export const colors = theme.colors;
 export const gradients = theme.gradients;
 export const fonts = theme.fonts;

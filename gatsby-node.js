@@ -1,45 +1,67 @@
-const path = require('path')
+const path = require('path');
+const { createFilePath } = require(`gatsby-source-filesystem`);
 
-module.exports.createPages = async ({ graphql, actions }) => {
+module.exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
-  const blogTemplate = path.resolve('./src/templates/index.tsx');
 
-  const res = await graphql(`
-   query {
-       allMdx { 
-          edges {
-            node { 
-              slug
-            }
+  const { data, errors } = await graphql(`
+    query {
+      posts: allMdx {
+        edges {
+          node {
+            slug
           }
-       }   
-      }
-   `)
-
-    res.data.allMdx.edges.forEach((edge)=> {
-      createPage({
-        component: blogTemplate,
-        path: `/blog/${edge.node.slug}`,
-        context: {
-          slug: edge.node.slug
         }
-
-      })
-    })
-  }
-
-  const { createFilePath } = require(`gatsby-source-filesystem`)
-
-  exports.onCreateNode = ({ node, actions, getNode }) => {
-    const { createNodeField } = actions
-    if (node.internal.type === "Mdx") {
-      const value = createFilePath({ node, getNode })
-
-      createNodeField({
-        name: `slug`,
-        node,
-        value,
-      })
+      }
+      categories: allMdx {
+        group(field: frontmatter___category) {
+          fieldValue
+        }
+      }
     }
+  `);
+
+  if (errors) {
+    reporter.panicOnBuild('🚨  ERROR: Loading "createPages" query');
   }
 
+  const posts = data.posts.edges;
+  posts.forEach((post, idx) => {
+    const previous = idx === posts.length - 1 ? null : posts[idx + 1].node;
+    const next = idx === 0 ? null : posts[idx - 1].node;
+
+    createPage({
+      component: path.resolve('./src/templates/blog-post.tsx'),
+      path: `/blog/${post.node.slug}`,
+      context: {
+        slug: post.node.slug,
+        previous,
+        next,
+      },
+    });
+  });
+
+  const categories = data.categories.group;
+  categories.forEach((category) => {
+    createPage({
+      component: path.resolve('./src/templates/blog-category.tsx'),
+      path: `/blog/${category.fieldValue}`.toLowerCase(),
+      context: {
+        category: category.fieldValue,
+      },
+    });
+  });
+};
+
+exports.onCreateNode = ({ node, actions, getNode }) => {
+  const { createNodeField } = actions;
+  if (node.internal.type === 'Mdx') {
+    const value = createFilePath({ node, getNode });
+
+    createNodeField({
+      name: `slug`,
+      node,
+      value,
+    });
+  }
+};

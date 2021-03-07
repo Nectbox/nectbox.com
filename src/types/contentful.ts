@@ -145,3 +145,15 @@ export interface ContentfulSocialMedia {
     };
   };
 }
+
+export interface ContentfulBlogCategories {
+  blogCategories: {
+    categories: ContentfulBlogCategory[];
+  };
+}
+
+export interface ContentfulBlogCategory {
+  id: string;
+  label: string;
+  slug: string;
+}

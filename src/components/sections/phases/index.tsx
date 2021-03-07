@@ -71,7 +71,7 @@ const Phases: React.FC<PhasesProps> = (props) => {
       caption={caption}
       title={title}
       subTitle={subTitle}
-      bottom={
+      customBottom={
         <CallToAction
           content={ctaModal.content}
           ctaName={ctaModal.ctaName}
