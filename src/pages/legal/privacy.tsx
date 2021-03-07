@@ -7,7 +7,7 @@ import {
   NormalHeading,
   List,
   ListItem,
-} from './legal.styles';
+} from '../../styles/text';
 
 const PrivacyPage = () => {
   const ctaRef = React.useRef(null);

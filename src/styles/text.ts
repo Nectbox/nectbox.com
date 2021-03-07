@@ -1,4 +1,4 @@
-import { colors } from './../../styles/theme';
+import { colors } from './theme';
 import styled from '@emotion/styled';
 
 export const BigHeading = styled.h3`

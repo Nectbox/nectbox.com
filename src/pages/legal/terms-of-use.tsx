@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DefaultLayout, Link, Section, SEO } from '../../components';
 import { Flex } from '@chakra-ui/react';
-import { BigHeading, NormalText, OrderList, ListItem } from './legal.styles';
+import { BigHeading, NormalText, OrderList, ListItem } from '../../styles/text';
 
 const PrivacyPage = () => {
   const ctaRef = React.useRef(null);
