@@ -8,8 +8,9 @@ import {
   List,
   ListItem,
 } from '../../styles/text';
+import { PageProps } from 'gatsby';
 
-const PrivacyPage = () => {
+const PrivacyPage = ({ location }: PageProps) => {
   const ctaRef = React.useRef(null);
 
   return (

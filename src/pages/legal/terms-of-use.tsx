@@ -2,8 +2,9 @@ import * as React from 'react';
 import { DefaultLayout, Link, Section, SEO } from '../../components';
 import { Flex } from '@chakra-ui/react';
 import { BigHeading, NormalText, OrderList, ListItem } from '../../styles/text';
+import { PageProps } from 'gatsby';
 
-const PrivacyPage = () => {
+const PrivacyPage = ({ location }: PageProps) => {
   const ctaRef = React.useRef(null);
 
   return (
