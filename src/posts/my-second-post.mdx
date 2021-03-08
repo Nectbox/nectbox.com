@@ -1,135 +1,67 @@
 ---
 author: Enyel
-title: What is the Jamstack?
-htmlTitle: What is the <mark>Jamstack?</mark>
+title: What it means to have a JAMstack website?
+htmlTitle: What it means to have a <mark>JAMstack</mark> website?
 featuredImage: ../images/posts/banner.webp
 description: Utilities for controlling how a background image behaves when scrolling.
 slug: my-second-post
 date: 2021-02-22
-excerpt: Jamstack is a frontend architecture, an acronym that stands for Javascript, APIs, and Markup stack. In this architecture, markup that incorporates Javascript, is pre-built into static assets, served to a client from a CDN, and relies on reusable APIs for its functionalities.
-category: business
+excerpt: JAMstack is an approach to frontend web development (the construction of content and interfaces that users interact with). It allows developers to quickly create and efficiently serve static websites to users.
+category: programming
 keywords:
-  - testing
-  - context
+  - technology
+  - arhitecture
 id: 2
 ---
 
-## IS THIS WORKING H2
+## What is JAMstack?
 
-First, let's create a file at `src/count-context.js` and we'll create our
-context there:
+JAMstack is an approach to frontend web development (the construction of content and interfaces that users interact with). It allows developers to quickly create and efficiently serve static websites to users.
 
-`console.log("hello inline code!!!") `
+In a JAMstack web application, as much HTML as possible is pre-built and stored in a content delivery network (CDN). Instead of running a monolithic backend application on the server side to generate dynamic content, dynamic components of the application are based on APIs. Ideally, this results in a much faster user experience and a much simpler developer experience.
 
-```jsx
-// src/count-context.js
-import * as React from 'react';
+## What does the term 'JAMstack' stand for?
 
-const CountStateContext = React.createContext();
-const CountDispatchContext = React.createContext();
-```
+`JAM` stands for `J`avaScript, `A`PIs, `M`arkup.
 
-First off, I don't have an initial value for the `CountStateContext`. If I
-wanted an initial value, I would call `React.createContext({count: 0})`. But I
-don't include a default value and that's intentional. The `defaultValue` is only
-useful in a situation like this:
+- JavaScript is the programming language used by web applications
+- An API (application programming interface) is a way to request data from someone else's program or application
+- Markup is code (HTML and CSS) that provides formatting instructions to browsers
 
-```jsx
-function CountDisplay() {
-  const { count } = React.useContext(CountStateContext);
-  return <div>{count}</div>;
-}
+_Stack_ refers to the combination of all these things in a way that allows developers to build applications and websites.
 
-ReactDOM.render(<CountDisplay />, document.getElementById('⚛️'));
-```
+A JAMstack website or application is constructed using only these three elements. The static website that the user sees is built out of HTML and CSS markup code. JavaScript is used for any necessary dynamic functionality, and for calling APIs. APIs provide the application's backend.
 
-Because we don't have a default value for our `CountStateContext`, we'll get an
-error on the highlighted line where we're destructing the return value of
-`useContext`. This is because our default value is `undefined` and you cannot
-destructure `undefined`.
+Suppose Bob builds a web application that provides updates on European football scores. Bob creates a backend application that runs on a server he operates and constantly checks the scores of the latest matches. When a user opens up the web application, Bob's server generates HTML pages that display those scores, then sends those pages to the user. However, Bob's web application is somewhat slow: before a user can view those pages, they have to wait for the backend application to run, for the HTML to be generated, and for the HTML to reach their device.
 
-None of us likes runtime errors, so your knee-jerk reaction may be to add a
-default value to avoid the runtime error. However, what use would the context be
-if it didn't have an actual value? If it's just using the default value that's
-been provided, then it can't really do much good. 99% of the time that you're
-going to be creating and using context in your application, you want your
-context consumers (those using `useContext`) to be rendered within a provider
-which can provide a useful value.
+Now suppose Bob rebuilds his web application using a JAMstack approach. Instead of writing an entire backend application, he creates a series of lightweight HTML pages that he stores in a CDN. When a user opens up the application, the CDN immediately delivers the corresponding HTML pages to the user, since the CDN is far closer to the user than Bob's server. The application also makes an API call in order to fill out the live football match scores on the page. Bob's web application now loads very quickly for the user, and from Bob's perspective, there is much less need to write code that will handle the backend, server-side work of updating the scores.
 
-> Note, there are situations where default values are useful, but most of the
-> time they're not necessary or useful.
+## What is a static website?
 
-[The React docs](https://reactjs.org/docs/context.html#reactcreatecontext)
-suggest that providing a default value "can be helpful in testing components in
-isolation without wrapping them." While it's true that it allows you to do this,
-I disagree that it's better than wrapping your components with the necessary
-context. Remember that every time you do something in your test that you don't
-do in your application, you reduce the amount of confidence that test can give
-you. [There are reasons to do this](/blog/the-merits-of-mocking), but that's not
-one of them.
+A static website is made up of one or more static webpages, which are HTML files that load in a browser the same way no matter who loads the file. Because static webpages consist solely of HTML, with no additional code that needs to run in the browser, they can load extremely quickly. (To see what HTML code looks like, right-click on a webpage while using the Chrome browser and click `"View Page Source"`.)
 
-> Note: If you're using Flow or TypeScript, not providing a default value can be
-> really annoying for people who are using `React.useContext`, but I'll show you
-> how to avoid that problem altogether below. Keep reading!
+By contrast, dynamic webpages are different each time they load. In order to provide a more interactive, personalized user experience, dynamic webpages change based on the user opening the page, the location of the page load, the time of day, and any number of other changing data inputs. When a dynamic webpage loads, code has to run either on the web server that hosts the webpage or within the user's browser. This reliance on running code can slow down the user experience.
 
-**What's this `CountDispatchContext` thing all about?** I've been playing around
-with context for a while, and talking with friends at Facebook who have been
-playing around with it for longer and I can tell you that the simplest way to
-avoid problems with context (especially when you start calling `dispatch` in
-effects) is to split up the state and dispatch in context. Stay with me here!
+Dynamic webpages are not the only way to create a modernized user experience. A mostly static JAMstack website can still provide a dynamic, personalized experience for users by occasionally generating new static content or calling APIs to fill out updated content.
 
-## The Custom Provider Component
+## How do JAMstack applications handle backend functions?
 
-Ok, let's continue. For this context module to be useful _at all_ we need to use
-the Provider and expose a component that provides a value. Our component will be
-used like this:
+In application development, the backend is the code that runs on a server behind the scenes. Usually a user is not aware of what is happening on the backend while they use a website or application. While JavaScript and markup dictate the way a JAMstack application appears to a user, it still needs backend functions in order to work. JAMstack handles this by calling APIs using JavaScript.
 
-```jsx
-function App() {
-  return (
-    <CountProvider>
-      <CountDisplay />
-      <Counter />
-    </CountProvider>
-  );
-}
+Using APIs means that JAMstack developers do not have to construct their own backend applications. They can build on already-existing APIs to make their websites and apps work.
 
-ReactDOM.render(<App />, document.getElementById('⚛️'));
-```
+When developers want to build their own functionality for an application, they can create a new API. APIs can be reused in a variety of contexts, so when developers build their own APIs for the backend, they should only need to construct that functionality once in order to use it in future applications.
 
-So let's make a component that can be used like that:
+## How does JAMstack relate to microservices?
 
-```jsx
-// src/count-context.js
-import * as React from 'react';
+![monolithic-architecture-vs-microservices-architecture](https://www.cloudflare.com/img/learning/serverless/glossary/serverless-microservice/monolithic-architecture-vs-microservices-architecture.svg)
 
-const CountStateContext = React.createContext();
-const CountDispatchContext = React.createContext();
+Using APIs allows JAMstack developers to take a microservices approach to the backend. In a [microservices architecture](https://www.cloudflare.com/en-gb/learning/serverless/glossary/serverless-microservice/?utm_referrer=https://duckduckgo.com/), an application's backend is broken down into smaller chunks that run on command — just as a JAMstack application calls various APIs when necessary, but otherwise does not need backend support.
 
-function countReducer(state, action) {
-  switch (action.type) {
-    case 'increment': {
-      return { count: state.count + 1 };
-    }
-    case 'decrement': {
-      return { count: state.count - 1 };
-    }
-    default: {
-      throw new Error(`Unhandled action type: ${action.type}`);
-    }
-  }
-}
+It is also possible to construct a JAMstack application that uses a partially or fully serverless backend. Serverless functions are small, reusable snippets of code that run on demand. However, a serverless architecture often requires a more hands-on approach to the backend by the developer, since they are essentially building the backend application themselves instead of calling APIs (although they do not have to worry about provisioning servers).
 
-function CountProvider({ children }) {
-  const [state, dispatch] = React.useReducer(countReducer, { count: 0 });
-  return (
-    <CountStateContext.Provider value={state}>
-      <CountDispatchContext.Provider value={dispatch}>
-        {children}
-      </CountDispatchContext.Provider>
-    </CountStateContext.Provider>
-  );
-}
+## What are the benefits of using JAMstack?
 
-export { CountProvider };
-```
+- Performance: Almost all of the content in a JAMstack application is made up of static HTML files that are served from a CDN. This is the fastest way to deliver web content to end users.
+- Scalability: If an application is "scalable," that means that it responds well to large increases in usage. Because the JAMstack frontend is fast and the backend is lightweight, JAMstack applications are often extremely scalable.
+- Better developer experience: JAMstack enables developers to focus on building a compelling frontend user experience, without worrying about the backend or performance issues.

@@ -3,10 +3,10 @@ import styled from '@emotion/styled';
 import Header from '../common/header';
 import Footer from '../common/footer';
 import { graphql, useStaticQuery } from 'gatsby';
+import { CategoryFilter, Navigation } from '../blog';
 import { Global } from '@emotion/react';
 import { CSSReset } from '@chakra-ui/react';
 import { LayoutData } from '../../types';
-import { CategoryFilter } from '../blog';
 
 import globalStyles from '../../styles/global';
 
@@ -19,10 +19,11 @@ interface DefaultLayoutProps {
   showFooterTop?: boolean;
   blog?: boolean;
   post?: boolean;
+  postProps?: object;
 }
 
 const DefaultLayout: React.FC<DefaultLayoutProps> = (props) => {
-  const { heroCtaRef, showFooterTop, blog, children } = props;
+  const { heroCtaRef, showFooterTop, blog, post, postProps, children } = props;
 
   const data: LayoutData = useStaticQuery(graphql`
     query LayoutQuery {
@@ -121,6 +122,12 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = (props) => {
           data={headerData}
           heroCtaRef={heroCtaRef}
           postHeader={<CategoryFilter />}
+        />
+      ) : post ? (
+        <Header
+          data={headerData}
+          heroCtaRef={heroCtaRef}
+          postHeader={<Navigation {...postProps} />}
         />
       ) : (
         <Header data={headerData} heroCtaRef={heroCtaRef} />

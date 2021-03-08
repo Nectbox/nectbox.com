@@ -14,8 +14,8 @@ export default function Avatar(props: AvatarProps) {
     <Flex>
       <ChackraAvatar bg='gray.800' w='5rem' h='5rem' name={name} />
       <Flex ml='1.5rem' flexFlow='column' justifyContent='center'>
-        <Text fontSize='1.7rem' fontWeight={500}>
-          {name}
+        <Text fontSize='1.7rem'>
+          By <strong>{name}</strong>
         </Text>
         {title && (
           <Text fontSize='1.4rem' color={colors.text.lightGray}>

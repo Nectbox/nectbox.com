@@ -3,16 +3,17 @@ import Highlight, { defaultProps } from 'prism-react-renderer';
 
 export const Pre = styled.pre`
   text-align: left;
-  margin: 1em 0;
-  padding: 0.5em;
-  overflow: scroll;
+  margin: 3rem 0;
+  padding: 1.1rem;
+  overflow: hidden;
+  border-radius: 0.6rem;
 `;
 
 export const Line = styled.div`
   display: table-row;
 `;
 
-export const LineNo = styled.span`
+export const LineNumber = styled.span`
   display: table-cell;
   text-align: right;
   padding-right: 1em;
@@ -22,6 +23,7 @@ export const LineNo = styled.span`
 
 export const LineContent = styled.span`
   display: table-cell;
+  padding-bottom: 0.1rem;
 `;
 
 const Code = ({ codeString, language, theme, ...props }) => (
@@ -29,12 +31,13 @@ const Code = ({ codeString, language, theme, ...props }) => (
     {...defaultProps}
     theme={theme}
     code={codeString}
-    language={language}>
+    language={language}
+    {...props}>
     {({ className, style, tokens, getLineProps, getTokenProps }) => (
       <Pre className={className} style={style}>
         {tokens.map((line, i) => (
           <Line key={i} {...getLineProps({ line, key: i })}>
-            <LineNo>{i + 1}</LineNo>
+            <LineNumber>{i + 1}</LineNumber>
             <LineContent>
               {line.map((token, key) => (
                 <span key={key} {...getTokenProps({ token, key })} />

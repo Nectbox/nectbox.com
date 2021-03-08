@@ -1,12 +1,30 @@
 import * as React from 'react';
 import Code from './code';
-import theme from 'prism-react-renderer/themes/dracula';
+import theme from 'prism-react-renderer/themes/oceanicNext';
+import { Link as GatsbyLink } from 'gatsby';
 import { MDXProvider } from '@mdx-js/react';
+import {
+  BigHeading,
+  NormalText,
+  InlineCode,
+  List,
+  ListItem,
+  OrderList,
+} from '../../../styles/text';
+import { LinkIcon } from '@chakra-ui/icons';
+import { Link } from '../../common';
 
 const components = {
-  h2: ({ children }) => <h2 style={{ color: 'red' }}>{children}</h2>,
-  'p.inlineCode': (props) => <code {...props} style={{ color: 'blue' }} />,
-
+  h2: ({ children }) => (
+    <BigHeading id={children}>
+      {children}
+      <Link to={`${window.location.pathname}#${children}`}>
+        <LinkIcon ml='1.25rem' />
+      </Link>
+    </BigHeading>
+  ),
+  p: (props) => <NormalText {...props} />,
+  'p.inlineCode': (props) => <InlineCode {...props} />,
   pre: ({ children: { props } }) => {
     if (props.mdxType === 'code') {
       return (
@@ -14,10 +32,14 @@ const components = {
           codeString={props.children.trim()}
           language={props.className && props.className.replace('language-', '')}
           theme={theme}
-          {...props}></Code>
+          {...props}
+        />
       );
     }
   },
+  ul: (props) => <List {...props} />,
+  ol: (props) => <OrderList {...props} />,
+  li: (props) => <ListItem {...props} />,
 };
 
 export default function Markdown(props: React.FC<{}>) {

@@ -2,9 +2,12 @@ import { colors } from './theme';
 import styled from '@emotion/styled';
 
 export const BigHeading = styled.h3`
+  display: flex;
+  align-items: center;
   font-size: 3rem;
   font-weight: 700;
   margin-bottom: 2rem;
+  scroll-margin-top: 13rem;
 `;
 
 export const NormalHeading = styled.h4`
@@ -20,7 +23,12 @@ export const NormalText = styled.p`
   color: ${colors.text.gray};
 
   > a {
+    font-size: inherit;
     color: ${colors.accent.red};
+
+    :hover {
+      text-decoration: underline;
+    }
   }
 `;
 
@@ -49,5 +57,21 @@ export const ListItem = styled.li`
 
   > a {
     color: ${colors.accent.red};
+  }
+`;
+
+export const InlineCode = styled.code`
+  font-size: 1.5rem;
+  background: ${colors.background.gray};
+  border-radius: 0.5rem;
+  padding: 0.2rem 0.65rem;
+`;
+
+export const Anchor = styled.a`
+  font-size: inherit;
+  color: ${colors.accent.red};
+
+  :hover {
+    text-decoration: underline;
   }
 `;

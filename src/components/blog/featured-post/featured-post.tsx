@@ -40,10 +40,16 @@ const FeaturedPost: React.FC<FeaturedPostProps> = ({ data }) => {
       leftPane={
         <>
           <Flex mb='1rem'>
+            <Badge
+              variant='solid'
+              mr='0.6rem'
+              fontSize='1.25rem'
+              colorScheme='purple'>
+              {data.category}
+            </Badge>
             {data.keywords.map((keyword, idx) => (
               <Badge
                 key={`keyword-${keyword}_${idx}`}
-                variant='solid'
                 mr='0.6rem'
                 fontSize='1.25rem'>
                 {keyword}
@@ -70,6 +76,7 @@ const FeaturedPost: React.FC<FeaturedPostProps> = ({ data }) => {
                   mt={{ base: '2.5rem', sm: 0 }}
                   p='1.2rem'
                   fontSize='2rem'
+                  color={colors.text.gray}
                   _hover={{ color: colors.accent.purple }}>
                   Read more
                   <ArrowRightIcon ml='.9rem' w={5} h={5} />

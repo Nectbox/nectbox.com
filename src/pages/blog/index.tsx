@@ -26,6 +26,8 @@ const BlogPage = ({ location }: PageProps) => {
       posts: allMdx(sort: { fields: frontmatter___date, order: DESC }) {
         edges {
           node {
+            id
+            timeToRead
             frontmatter {
               author
               description

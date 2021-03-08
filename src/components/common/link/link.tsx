@@ -9,10 +9,11 @@ interface LinkProps {
   title?: string;
   style?: object;
   activeStyle?: object;
+  className?: string;
 }
 
 const Link: React.FC<LinkProps> = (props) => {
-  const { to, isExternal, isMenu, children, ...restProps } = props;
+  const { to, isExternal, isMenu, className, children, ...restProps } = props;
 
   const style = { height: 'fit-content', fontSize: 'inherit' };
 
@@ -22,11 +23,12 @@ const Link: React.FC<LinkProps> = (props) => {
       target='_blank'
       rel='noopener noreferrer'
       style={style}
+      className={className}
       {...restProps}>
       {children}
     </a>
   ) : (
-    <GatsbyLink to={to} style={style} {...restProps}>
+    <GatsbyLink className={className} to={to} style={style} {...restProps}>
       {children}
       {isMenu && <ChevronDownIcon />}
     </GatsbyLink>

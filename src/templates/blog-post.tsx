@@ -1,19 +1,14 @@
 import * as React from 'react';
 import { graphql, PageProps } from 'gatsby';
-import { MDXRenderer } from 'gatsby-plugin-mdx';
-import { DefaultLayout } from '../components';
+import { DefaultLayout, Post } from '../components';
 import { MdxBlogPostData } from '../types';
 
 export default function BlogPost({ data }: PageProps<MdxBlogPostData>) {
-  const { frontmatter, body } = data.mdx;
+  const { frontmatter, body, timeToRead } = data.mdx;
 
   return (
-    <DefaultLayout>
-      <h1>{frontmatter.title}</h1>
-      <h1>{frontmatter.date}</h1>
-      <p>{frontmatter.description}</p>
-      <p>{frontmatter.author}</p>
-      <MDXRenderer>{body}</MDXRenderer>
+    <DefaultLayout post postProps={{ data: timeToRead }}>
+      <Post metaData={frontmatter} postData={body} />
     </DefaultLayout>
   );
 }
@@ -21,6 +16,7 @@ export default function BlogPost({ data }: PageProps<MdxBlogPostData>) {
 export const query = graphql`
   query PostBySlug($slug: String!) {
     mdx(slug: { eq: $slug }) {
+      timeToRead
       frontmatter {
         author
         description

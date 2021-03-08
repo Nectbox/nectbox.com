@@ -33,6 +33,7 @@ export interface MdxBlogPostsData {
   edges: Array<{
     node: {
       id: string;
+      timeToRead: number;
       frontmatter: FormatterData;
       fields: {
         slug: string;
@@ -44,6 +45,7 @@ export interface MdxBlogPostsData {
 export interface MdxBlogPostData {
   mdx: {
     body: string;
+    timeToRead: number;
     frontmatter: FormatterData;
   };
 }
