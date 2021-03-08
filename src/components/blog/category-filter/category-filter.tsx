@@ -8,7 +8,7 @@ import { ContentfulBlogCategories } from '../../../types';
 
 export const CategoryFilterWrapper = styled(Stack)`
   background: ${colors.background.lightGray};
-  height: 5rem;
+  height: 4.8rem;
   margin-top: 0 !important;
 `;
 
@@ -17,9 +17,13 @@ export const FilterLabel = styled.p`
   color: ${colors.text.lightGray};
   padding: 1rem 2rem;
   cursor: pointer;
+
+  :hover {
+    color: ${colors.text.gray};
+  }
 `;
 
-export default function CategoryFilter() {
+const CategoryFilter: React.FC = () => {
   const { blogCategories }: ContentfulBlogCategories = useStaticQuery(graphql`
     query CategoriesQuery {
       blogCategories: contentfulBlogCategories {
@@ -44,7 +48,8 @@ export default function CategoryFilter() {
               <Link
                 to={
                   category.slug === 'all' ? '/blog' : `/blog/${category.slug}`
-                }>
+                }
+                activeStyle={{ color: colors.accent.red }}>
                 {category.label}
               </Link>
             </FilterLabel>
@@ -53,4 +58,6 @@ export default function CategoryFilter() {
       </Container>
     </CategoryFilterWrapper>
   );
-}
+};
+
+export default CategoryFilter;

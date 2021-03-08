@@ -1,4 +1,3 @@
-import { FluidObject } from 'gatsby-image';
 import {
   ContentfulRichTextGatsbyReference,
   RenderRichTextData,

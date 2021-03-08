@@ -1,19 +1,29 @@
 import * as React from 'react';
-import Image from 'gatsby-image';
 import { graphql, PageProps, useStaticQuery } from 'gatsby';
-import { Card, DefaultLayout, Link, SEO, SplitSection } from '../../components';
-import { AllMdxBlogPostData, FormatterData } from '../../types';
-import { dimensions } from '../../styles/theme';
-export interface Post {
-  node: {
-    frontmatter: FormatterData;
+import {
+  DefaultLayout,
+  FeaturedPost,
+  SEO,
+  TileSection,
+} from '../../components';
+import { FormatterData, MdxBlogPostsData } from '../../types';
+
+export interface BlogQueryData {
+  posts: MdxBlogPostsData;
+  categories: {
+    group: Array<{ fieldValue: string }>;
   };
 }
 
 const BlogPage = ({ location }: PageProps) => {
-  const data: AllMdxBlogPostData = useStaticQuery(graphql`
+  const { posts, categories }: BlogQueryData = useStaticQuery(graphql`
     query {
-      allMdx(sort: { fields: frontmatter___date, order: DESC }) {
+      categories: allMdx {
+        group(field: frontmatter___category) {
+          fieldValue
+        }
+      }
+      posts: allMdx(sort: { fields: frontmatter___date, order: DESC }) {
         edges {
           node {
             frontmatter {
@@ -25,6 +35,7 @@ const BlogPage = ({ location }: PageProps) => {
               htmlTitle
               date(formatString: "MMMM DD, YYYY")
               id
+              category
               keywords
               featuredImage {
                 childImageSharp {
@@ -40,41 +51,26 @@ const BlogPage = ({ location }: PageProps) => {
     }
   `);
 
-  const allPosts = data.allMdx.edges;
-  const featuredBlogPost = allPosts[allPosts.length - 1].node.frontmatter;
+  const allPosts = posts.edges;
+  const featuredBlogPost = allPosts[0].node.frontmatter;
 
   return (
     <DefaultLayout blog>
       <SEO pathname={location.pathname} title='Blog' />
-      <SplitSection
-        customWidth={dimensions.blogWidth}
-        paddingTop='12.5rem'
-        titleHTML={featuredBlogPost.htmlTitle}
-        subTitle={featuredBlogPost.excerpt}
-        headingProps={{
-          fontSize: {
-            base: '4.9rem !important',
-            sm: '5.3rem !important',
-            lg: '5.9rem !important',
-          },
-          lineHeight: {
-            base: '6rem !important',
-            sm: '6.75rem !important',
-            lg: '7.45rem !important',
-          },
-        }}
-        rightPane={
-          <Link to={featuredBlogPost.slug} style={{ maxWidth: '85%' }}>
-            <Image
-              fluid={featuredBlogPost.featuredImage.childImageSharp.fluid}
-              imgStyle={{
-                objectFit: 'contain',
-              }}
-              alt='Launching a new product'
-            />
-          </Link>
-        }
-      />
+      <FeaturedPost data={featuredBlogPost} />
+      {categories.group.map((category, idx) => {
+        const categoryPostData = allPosts.filter(
+          (post) => post.node.frontmatter.category === category.fieldValue
+        );
+
+        return (
+          <TileSection
+            key={idx}
+            title={category.fieldValue}
+            data={categoryPostData}
+          />
+        );
+      })}
     </DefaultLayout>
   );
 };

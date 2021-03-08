@@ -26,17 +26,19 @@ export interface SiteMetadeta {
 }
 
 export interface AllMdxBlogPostData {
-  allMdx: {
-    edges: Array<{
-      node: {
-        id: string;
-        frontmatter: FormatterData;
-        fields: {
-          slug: string;
-        };
+  allMdx: MdxBlogPostsData;
+}
+
+export interface MdxBlogPostsData {
+  edges: Array<{
+    node: {
+      id: string;
+      frontmatter: FormatterData;
+      fields: {
+        slug: string;
       };
-    }>;
-  };
+    };
+  }>;
 }
 
 export interface MdxBlogPostData {

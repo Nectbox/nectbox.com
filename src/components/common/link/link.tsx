@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link as GatsbyLink } from 'gatsby';
+import { Link as GatsbyLink, GatsbyLinkProps } from 'gatsby';
 import { ChevronDownIcon } from '@chakra-ui/icons';
 
 interface LinkProps {
@@ -7,7 +7,8 @@ interface LinkProps {
   isExternal?: boolean;
   isMenu?: boolean;
   title?: string;
-  style?: any;
+  style?: object;
+  activeStyle?: object;
 }
 
 const Link: React.FC<LinkProps> = (props) => {

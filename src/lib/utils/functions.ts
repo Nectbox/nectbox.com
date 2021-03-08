@@ -19,3 +19,9 @@ export const hexToRGB = (value: string) => {
     parseInt(splitHexValues[2], 16),
   ];
 };
+
+export const processCategoryTitle = (value: string): string => {
+  const capitalizaFirstLetter = value.charAt(0).toUpperCase() + value.slice(1);
+
+  return capitalizaFirstLetter.replace('-', ' ');
+};

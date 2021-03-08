@@ -10,4 +10,5 @@ export { default as SplitSection } from './split-section';
 export { default as Accordion } from './accordion';
 export { default as ContactForm } from './contact-form';
 export { default as Alert } from './alert';
+export { default as Avatar } from './avatar';
 export * from './menu';

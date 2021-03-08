@@ -3,6 +3,7 @@ import { Grid } from '@chakra-ui/react';
 import { graphql, PageProps } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { Card, DefaultLayout, Section } from '../components';
+import { processCategoryTitle } from '../lib/utils';
 import { dimensions } from '../styles/theme';
 import { AllMdxBlogPostData } from '../types';
 
@@ -16,7 +17,7 @@ export default function BlogCategory({
         customWidth={dimensions.blogWidth}
         paddingTop='12.5rem'
         caption='category'
-        title={pageContext.category}>
+        title={processCategoryTitle(pageContext.category)}>
         <Grid
           width={{ base: '100%', sm: '85%', md: '80%' }}
           templateColumns='repeat(auto-fill, minmax(38rem, 1fr))'
