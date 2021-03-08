@@ -13,16 +13,21 @@ import {
 } from '../../../styles/text';
 import { LinkIcon } from '@chakra-ui/icons';
 import { Link } from '../../common';
+import { isBrowser } from '../../../lib/utils';
 
 const components = {
-  h2: ({ children }) => (
-    <BigHeading id={children}>
-      {children}
-      <Link to={`${window.location.pathname}#${children}`}>
-        <LinkIcon ml='1.25rem' />
-      </Link>
-    </BigHeading>
-  ),
+  h2: ({ children }) => {
+    const browserHref = isBrowser ? window.location.pathname : null;
+
+    return (
+      <BigHeading id={children}>
+        {children}
+        <Link to={`${browserHref}#${children}`}>
+          <LinkIcon ml='1.25rem' />
+        </Link>
+      </BigHeading>
+    );
+  },
   p: (props) => <NormalText {...props} />,
   'p.inlineCode': (props) => <InlineCode {...props} />,
   pre: ({ children: { props } }) => {
