@@ -22,6 +22,7 @@ import {
   Component,
   FormatterData,
 } from '../../../types';
+import { isBrowser } from '../../../lib/utils';
 
 interface HeaderProps {
   data: HeaderModule;
@@ -153,7 +154,10 @@ const Header: React.FC<HeaderProps> = (props) => {
               </>
             )}
             {type === 'post' && showButton && (
-              <ShareBar path={postData.slug} title={postData.title} />
+              <ShareBar
+                path={isBrowser ? window.location.href : null}
+                title={postData.title}
+              />
             )}
           </Box>
         </Wrapper>
