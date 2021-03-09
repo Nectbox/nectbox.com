@@ -1,10 +1,8 @@
 import * as React from 'react';
 import Image from 'gatsby-image';
-import Link from '../link';
-import Button from '../button';
 import MobileNavigation from './mobile-navigation';
 import { graphql, useStaticQuery } from 'gatsby';
-import { Menu, MenuItem } from '../menu';
+import { Menu, MenuItem, Button, Link, ShareBar } from '../..';
 import { Box, useDisclosure } from '@chakra-ui/react';
 import { HamburgerIcon } from '@chakra-ui/icons';
 import {
@@ -15,13 +13,21 @@ import {
   BurgerMenu,
   NavList,
   NavItem,
+  PostDetails,
 } from './header.styles';
 import { width } from '../../../styles/theme';
-import { FixedImageProps, HeaderModule, Component } from '../../../types';
+import {
+  FixedImageProps,
+  HeaderModule,
+  Component,
+  FormatterData,
+} from '../../../types';
 
 interface HeaderProps {
   data: HeaderModule;
-  heroCtaRef: React.MutableRefObject<any>;
+  heroCtaRef?: React.MutableRefObject<any>;
+  type?: 'default' | 'post';
+  postData?: FormatterData;
   preHeader?: Component;
   postHeader?: Component;
 }
@@ -43,7 +49,7 @@ const Header: React.FC<HeaderProps> = (props) => {
     }
   `);
 
-  const { data, heroCtaRef, preHeader, postHeader } = props;
+  const { data, heroCtaRef, preHeader, postHeader, type, postData } = props;
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [showButton, setShowButton] = React.useState<boolean>(false);
 
@@ -80,58 +86,74 @@ const Header: React.FC<HeaderProps> = (props) => {
               />
             </Link>
 
-            <Navigation>
-              <NavList>
-                {data.navigation.menues.map((menu) =>
-                  menu.megaMenu ? (
-                    <NavItem key={menu.id}>
-                      <Menu
-                        menuName={menu.title}
-                        isLink={menu.slug ? true : false}
-                        to={`/${menu.slug}`}
-                        menuList={
-                          <>
-                            {menu.megaMenu.menuItems.map((item) => (
-                              <MenuItem
-                                key={item.id}
-                                title={item.heading}
-                                subTitle={item.subHeading}
-                                isLink={item.slug ? true : false}
-                                to={`/${item.slug}`}
-                              />
-                            ))}
-                          </>
-                        }
-                      />
-                    </NavItem>
-                  ) : (
-                    <NavItem key={menu.id}>
-                      <Link to={`/${menu.slug}`}>{menu.title}</Link>
-                    </NavItem>
-                  )
-                )}
-              </NavList>
-            </Navigation>
+            {(type === 'default' || (type === 'post' && !showButton)) && (
+              <Navigation>
+                <NavList>
+                  {data.navigation.menues.map((menu) =>
+                    menu.megaMenu ? (
+                      <NavItem key={menu.id}>
+                        <Menu
+                          menuName={menu.title}
+                          isLink={menu.slug ? true : false}
+                          to={`/${menu.slug}`}
+                          menuList={
+                            <>
+                              {menu.megaMenu.menuItems.map((item) => (
+                                <MenuItem
+                                  key={item.id}
+                                  title={item.heading}
+                                  subTitle={item.subHeading}
+                                  isLink={item.slug ? true : false}
+                                  to={`/${item.slug}`}
+                                />
+                              ))}
+                            </>
+                          }
+                        />
+                      </NavItem>
+                    ) : (
+                      <NavItem key={menu.id}>
+                        <Link to={`/${menu.slug}`}>{menu.title}</Link>
+                      </NavItem>
+                    )
+                  )}
+                </NavList>
+              </Navigation>
+            )}
+            {type === 'post' && showButton && (
+              <PostDetails
+                aria-label='Current post title'
+                title={postData.title}>
+                {postData.title}
+              </PostDetails>
+            )}
           </Box>
 
           <Box display='flex' alignItems='center'>
-            <BurgerMenu
-              spacing={showButton ? 1 : 0}
-              size='lg'
-              variant='unstyled'
-              aria-label='Mobile menu navigation'
-              icon={<HamburgerIcon w={12} h={12} />}
-              onClick={onOpen}
-            />
-            <MobileNavigation
-              data={data.navigation.menues}
-              isOpen={isOpen}
-              onClose={onClose}
-            />
-            {showButton && (
-              <Button className='consultation'>
-                <Link to={`/${data.ctaLink}`}>{data.ctaTitle}</Link>{' '}
-              </Button>
+            {type === 'default' && (
+              <>
+                <BurgerMenu
+                  spacing={showButton ? 1 : 0}
+                  size='lg'
+                  variant='unstyled'
+                  aria-label='Mobile menu navigation'
+                  icon={<HamburgerIcon w={12} h={12} />}
+                  onClick={onOpen}
+                />
+                <MobileNavigation
+                  data={data.navigation.menues}
+                  isOpen={isOpen}
+                  onClose={onClose}
+                />
+                {showButton && (
+                  <Button className='consultation'>
+                    <Link to={`/${data.ctaLink}`}>{data.ctaTitle}</Link>{' '}
+                  </Button>
+                )}
+              </>
+            )}
+            {type === 'post' && showButton && (
+              <ShareBar path={postData.slug} title={postData.title} />
             )}
           </Box>
         </Wrapper>
@@ -142,6 +164,7 @@ const Header: React.FC<HeaderProps> = (props) => {
 };
 
 Header.defaultProps = {
+  type: `default`,
   preHeader: null,
   postHeader: null,
 };

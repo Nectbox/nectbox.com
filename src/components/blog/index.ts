@@ -4,4 +4,5 @@ export { default as FeaturedPost } from './featured-post';
 export { default as TileSection } from './tile-section';
 export { default as Post } from './post';
 export { default as Navigation } from './navigation';
+export { default as ShareBar } from './share-bar';
 export * from './markdown';

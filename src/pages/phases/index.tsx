@@ -16,7 +16,7 @@ const PhasesPage = ({ location }: PageProps) => {
   const ctaRef = React.useRef(null);
 
   return (
-    <DefaultLayout heroCtaRef={ctaRef}>
+    <DefaultLayout headerProps={{ heroCtaRef: ctaRef }}>
       <SEO pathname={location.pathname} title='Phases' />
       <SplitSection
         ref={ctaRef}

@@ -1,13 +1,14 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
 import { Link } from '../../common';
-import { Container, Flex, Stack, Text } from '@chakra-ui/react';
+import { useTransform, useElementScroll } from 'framer-motion';
+import { Container, Flex, Progress, Stack, Text } from '@chakra-ui/react';
 import { colors, width } from '../../../styles/theme';
 import { InfoOutlineIcon } from '@chakra-ui/icons';
 
 export const NavigationWrapper = styled(Stack)`
   background: ${colors.background.lightGray};
-  height: 4.8rem;
+  min-height: 4.8rem;
   margin-top: 0 !important;
 `;
 
@@ -21,7 +22,14 @@ export const LabelText = styled(Text)`
   }
 `;
 
-const Navigation: React.FC<{ data?: number }> = ({ data }) => {
+export interface NavigationProps {
+  data?: number;
+  percentage?: number;
+}
+
+const Navigation: React.FC<NavigationProps> = (props) => {
+  const { data, percentage } = props;
+
   return (
     <NavigationWrapper>
       <Container maxW={width} height='inherit'>
@@ -37,6 +45,11 @@ const Navigation: React.FC<{ data?: number }> = ({ data }) => {
           </LabelText>
         </Flex>
       </Container>
+      <Progress
+        value={Math.floor(percentage * 100)}
+        size='xs'
+        colorScheme='purple'
+      />
     </NavigationWrapper>
   );
 };

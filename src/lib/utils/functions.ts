@@ -23,5 +23,9 @@ export const hexToRGB = (value: string) => {
 export const processCategoryTitle = (value: string): string => {
   const capitalizaFirstLetter = value.charAt(0).toUpperCase() + value.slice(1);
 
-  return capitalizaFirstLetter.replace('-', ' ');
+  return capitalizaFirstLetter.replace(/-/g, ' ');
+};
+
+export const generateAnchorId = (value: string): string => {
+  return value.toLocaleLowerCase().replace(/\s/g, '-').trim();
 };

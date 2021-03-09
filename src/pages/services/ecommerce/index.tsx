@@ -75,7 +75,7 @@ export default function EcommercePage({ location }: PageProps) {
   const ctaRef = React.useRef(null);
 
   return (
-    <DefaultLayout heroCtaRef={ctaRef}>
+    <DefaultLayout headerProps={{ heroCtaRef: ctaRef }}>
       <SEO pathname={location.pathname} title='eCommerce' />
       <SplitSection
         ref={ctaRef}

@@ -13,7 +13,7 @@ export const List = styled.ul`
   background: ${theme.colors.background.gray};
   padding: 1.6rem 1.8rem;
   box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.2);
-  /* box-shadow: 0 8px 20px 0 #4a5568; */
+  z-index: 9999;
 `;
 
 export const MenuWrapper = styled.div`

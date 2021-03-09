@@ -15,15 +15,22 @@ const Main = styled.main`
 `;
 
 interface DefaultLayoutProps {
-  heroCtaRef?: React.MutableRefObject<any>;
   showFooterTop?: boolean;
   blog?: boolean;
   post?: boolean;
-  postProps?: object;
+  postNavProps?: object;
+  headerProps?: object;
 }
 
 const DefaultLayout: React.FC<DefaultLayoutProps> = (props) => {
-  const { heroCtaRef, showFooterTop, blog, post, postProps, children } = props;
+  const {
+    headerProps,
+    showFooterTop,
+    blog,
+    post,
+    postNavProps,
+    children,
+  } = props;
 
   const data: LayoutData = useStaticQuery(graphql`
     query LayoutQuery {
@@ -120,17 +127,18 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = (props) => {
       {blog ? (
         <Header
           data={headerData}
-          heroCtaRef={heroCtaRef}
           postHeader={<CategoryFilter />}
+          {...headerProps}
         />
       ) : post ? (
         <Header
+          type='post'
           data={headerData}
-          heroCtaRef={heroCtaRef}
-          postHeader={<Navigation {...postProps} />}
+          postHeader={<Navigation {...postNavProps} />}
+          {...headerProps}
         />
       ) : (
-        <Header data={headerData} heroCtaRef={heroCtaRef} />
+        <Header data={headerData} {...headerProps} />
       )}
       <Main>{children}</Main>
       <Footer data={footerData} showTop={showFooterTop} />

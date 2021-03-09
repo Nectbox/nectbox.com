@@ -13,16 +13,17 @@ import {
 } from '../../../styles/text';
 import { LinkIcon } from '@chakra-ui/icons';
 import { Link } from '../../common';
-import { isBrowser } from '../../../lib/utils';
+import { generateAnchorId, isBrowser } from '../../../lib/utils';
 
 const components = {
   h2: ({ children }) => {
     const browserHref = isBrowser ? window.location.pathname : null;
+    const anchorText = generateAnchorId(children);
 
     return (
-      <BigHeading id={children}>
+      <BigHeading id={anchorText}>
         {children}
-        <Link to={`${browserHref}#${children}`}>
+        <Link to={`${browserHref}#${anchorText}`}>
           <LinkIcon ml='1.25rem' />
         </Link>
       </BigHeading>

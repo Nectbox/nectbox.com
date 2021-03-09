@@ -174,3 +174,34 @@ export const Title = styled(AccordtionTitle)`
     color: ${colors.accent.purple};
   }
 `;
+
+export const PostDetails = styled.p`
+  width: 100%;
+  display: none;
+  align-items: center;
+  font-size: 2.5rem;
+  margin-left: 10rem;
+  color: ${colors.text.darkGray};
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: default;
+
+  @media (min-width: ${breakpoints.md}) {
+    font-size: 2.3rem;
+    margin-left: 4rem;
+    max-width: 35rem;
+    display: block;
+  }
+
+  @media (min-width: ${breakpoints.lg}) {
+    font-size: 2.4rem;
+    margin-left: 7rem;
+    max-width: 50rem;
+  }
+
+  @media (min-width: ${breakpoints.xl}) {
+    margin-left: 10rem;
+    max-width: 53rem;
+  }
+`;

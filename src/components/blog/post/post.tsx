@@ -2,21 +2,25 @@ import * as React from 'react';
 import { Container, Flex, Text } from '@chakra-ui/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { FormatterData } from '../../../types';
-import { colors, dimensions } from '../../../styles/theme';
-import { Avatar, Link, SplitSection } from '../../common';
-import { ArrowRightIcon } from '@chakra-ui/icons';
+import { dimensions } from '../../../styles/theme';
+import { Avatar, SplitSection } from '../../common';
 
 export interface PostProps {
   metaData: FormatterData;
   postData: string;
+  headerPostRef?: React.MutableRefObject<HTMLDivElement>;
+  bodyPostRef?:
+    | React.RefObject<HTMLDivElement>
+    | ((node?: Element | null) => void);
 }
 
 const Post: React.FC<PostProps> = (props) => {
-  const { metaData, postData } = props;
+  const { metaData, postData, headerPostRef, bodyPostRef } = props;
 
   return (
     <Container maxW={dimensions.width}>
       <SplitSection
+        ref={headerPostRef}
         paddingTop='9.5rem'
         title={metaData.title}
         headingProps={{
@@ -42,7 +46,7 @@ const Post: React.FC<PostProps> = (props) => {
         }
         wide
       />
-      <Container maxW={dimensions.postWidth}>
+      <Container maxW={dimensions.postWidth} ref={bodyPostRef}>
         <MDXRenderer>{postData}</MDXRenderer>
       </Container>
     </Container>

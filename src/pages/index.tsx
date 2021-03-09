@@ -19,7 +19,7 @@ export default function HomePage({ location, data }: PageProps<HomepageData>) {
   const phasesData = data.phases.edges[0].node;
 
   return (
-    <DefaultLayout heroCtaRef={ctaRef}>
+    <DefaultLayout headerProps={{ heroCtaRef: ctaRef }}>
       <SEO pathname={location.pathname} title='Home' />
       <Hero data={heroData} ref={ctaRef} />
       <Services data={servicesData} />

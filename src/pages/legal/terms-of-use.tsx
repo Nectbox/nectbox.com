@@ -8,7 +8,7 @@ const PrivacyPage = ({ location }: PageProps) => {
   const ctaRef = React.useRef(null);
 
   return (
-    <DefaultLayout heroCtaRef={ctaRef}>
+    <DefaultLayout headerProps={{ heroCtaRef: ctaRef }}>
       <SEO pathname={location.pathname} title='Terms of use' />
       <Section caption='legal' title='Terms of use'>
         <Flex direction='column'>

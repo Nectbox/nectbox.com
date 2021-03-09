@@ -70,7 +70,7 @@ export default function ProgressiveWebAppPage({ location }: PageProps) {
   const ctaRef = React.useRef(null);
 
   return (
-    <DefaultLayout heroCtaRef={ctaRef}>
+    <DefaultLayout headerProps={{ heroCtaRef: ctaRef }}>
       <SEO pathname={location.pathname} title='PWAs' />
       <SplitSection
         ref={ctaRef}
