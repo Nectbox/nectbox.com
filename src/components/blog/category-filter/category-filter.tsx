@@ -35,7 +35,7 @@ const CategoryFilter: React.FC = () => {
   const [isLargerThan768] = useMediaQuery(`(min-width: ${breakpoints.md})`);
 
   function getActivePath() {
-    if (!isBrowser) return;
+    if (!isBrowser) return 'null';
 
     const path = window.location.pathname;
     const pathArray = path.split('/');
