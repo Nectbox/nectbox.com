@@ -1,6 +1,6 @@
 <div align="center">
 
-# Personal website
+# Nectbox
 
 </div>
 
@@ -18,6 +18,7 @@ Here is a list of technologies used:
 
 - **Gatsby/React**: Front-end framework
 - **Emotion**: CSS in JS solution
+- **Chakra-UI**: Components library
 - **Contentful**: CMS (Content Management System)
 
 ### Folder structure
@@ -25,8 +26,12 @@ Here is a list of technologies used:
 ```sh
 nectbox/
 ├── components     # Reusabble parts
-├── layouts        # General page skeleton
-├── styles         # General app styles
+├── hooks          # Reusabble react functions
+├── images         # Media assets
+├── lib            # external modules
 ├── pages          # Application views
-└── images         # Media assets
+├── posts          # Blog mdx files
+├── styles         # General app styles
+├── templates      # Blog templates
+└── types          # TS type definitions
 ```
